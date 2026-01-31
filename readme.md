@@ -1,22 +1,34 @@
-Phase 1: BPMN Language Model (Your idea - start here!)
+# BPMN Language Model
 
-Train small model on BPMN specifications
-Focus on understanding elements, syntax, structure
-Build strong parsing and validation capabilities
+A language model trained to understand, parse, and generate Business Process Model and Notation (BPMN) diagrams.
 
-Phase 2: Augment with Process Patterns
+## Development Roadmap
 
-Add common process patterns (sequential approvals, parallel tasks, loops)
-Don't need thousands - maybe 50-100 well-annotated examples
-These are like "design patterns" in software
+### Phase 1: Foundation - BPMN Language Model ✓
+Train a specialized model on BPMN specifications to develop core competencies:
+- Deep understanding of BPMN elements, syntax, and structure
+- Strong parsing and validation capabilities
+- Semantic understanding of process components
 
-Phase 3: Domain Knowledge (Optional)
+### Phase 2: Process Patterns
+Enhance the model with common business process patterns:
+- Sequential workflows (approvals, escalations)
+- Parallel task execution
+- Loops and conditional flows
+- 50-100 curated, well-annotated process examples
+- Similar to design patterns in software architecture
 
-Add your specific business processes if needed
-Fine-tune for your industry/company
+### Phase 3: Domain Specialization (Optional)
+Customize for specific business contexts:
+- Industry-specific process templates
+- Organization-specific workflows
+- Fine-tuning on proprietary business processes
 
+## Capabilities by Phase
 
-A. Parse uploaded BPMN and explain it ← Phase 1 handles this
-B. Find errors/gaps in existing BPMN ← Phase 1 handles much of this
-C. Generate new BPMN from natural language ← Needs Phase 2
-D. Suggest automation opportunities ← Needs Phase 2+3
+| Capability | Required Phase |
+|------------|----------------|
+| **Parse and explain BPMN diagrams** | Phase 1 ✓ |
+| **Detect errors and gaps in BPMN** | Phase 1 🚧 |
+| **Generate BPMN from natural language** | Phase 2 |
+| **Suggest automation opportunities** | Phase 2 + 3 |
