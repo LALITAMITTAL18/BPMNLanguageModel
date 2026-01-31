@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Model checkpoints and training artifacts
+checkpoint-*/
+*.safetensors
+*.pt
+*.pth
+*.bin
+runs/
+logs/
+wandb/
+
+# Data files (uncomment if you don't want to track large datasets)
+# *.jsonl
+# *.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+
+# Trained models (final outputs)
+Phase1/bpmn_model_final/
+Phase1/bpmn_language_model/
+*_final/
+
+# Training outputs
+outputs/
+output/
+results/
+
+# Logs
+*.log
+
+# Cache directories
+.cache/
+cache/
