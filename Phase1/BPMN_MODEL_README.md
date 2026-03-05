@@ -6,9 +6,9 @@ This Jupyter notebook trains a small language model specialized in BPMN (Busines
 
 ## 🎯 What Does This Notebook Do?
 
-1. **Loads BPMN Training Data**: 1,500+ examples from the official BPMN specification
+1. **Loads BPMN Training Data**: 2,079+ examples from the official BPMN specification and derived datasets
 2. **Fine-tunes DistilGPT-2**: A small, efficient language model (82M parameters)
-3. **Creates a BPMN Expert**: Model learns to answer BPMN-related questions
+3. **Creates a BPMN Expert**: Model learns to answer BPMN-related questions and can generate BPMN if user provides a business process. Can think along what is missing and what can be improved and finds and suggest the gaps.
 4. **Provides Interactive Testing**: Query the model with your own BPMN questions
 
 ## 🚀 Quick Start
@@ -44,7 +44,11 @@ If you've already trained the model:
 - **Source**: Official OMG BPMN 2.0 Specification (via bpmn-io GitHub)
 - **Elements**: 322 BPMN elements
 - **Q&A Pairs**: 1,318 question-answer examples
-- **Comparisons**: 620 element comparison pairs
+- **Comparisons**: 171 element comparison pairs
+- **Process Generation**: 15 text-to-BPMN XML pairs (multi-element)
+- **XML to Description**: 80 XML comprehension pairs (includes multi-element)
+- **Validation**: 85 valid/invalid BPMN XML examples
+- **Rationale**: 88 "why use X over Y" examples
 - **Natural Language**: 322 descriptive texts
 
 ### Training Configuration

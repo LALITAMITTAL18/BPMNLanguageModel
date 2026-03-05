@@ -49,10 +49,32 @@ Successfully scraped and generated comprehensive BPMN 2.0 training datasets from
 - Instruction-tuning format compatible with modern LLMs
 
 ### 4. bpmn_comparisons.jsonl (147 KB)
-- **620 comparison pairs**
-- Compares similar elements within same category
+- **171 comparison pairs**
+- Compares similar elements across the offline element set
 - Highlights similarities and differences
 - Helps model learn distinctions between related concepts
+
+### 5. bpmn_process_generation.jsonl (NEW, 15 examples)
+- **15 text-to-BPMN XML pairs**
+- Format: instruction, input, output
+- Focused on end-to-end process generation
+
+### 6. bpmn_xml_to_description.jsonl (NEW, 80 examples)
+- **80 BPMN XML-to-description pairs**
+- Format: instruction, input, output
+- Focused on XML reading comprehension
+
+### 7. bpmn_validation_examples.jsonl (NEW, 85 examples)
+- **85 valid/invalid BPMN XML examples**
+- Format: instruction, input, output
+- Focused on validation judgments and explanations
+
+### 8. bpmn_rationale_examples.jsonl (NEW, 88 examples)
+- **88 "why use X over Y" rationale examples**
+- Format: instruction, input, output
+- Focused on concise selection rationales
+
+**Total Training Examples**: 2,079+ (across all formats)
 
 ## Category Breakdown
 | Category | Count |
@@ -152,7 +174,11 @@ bpmn_training_data/
 ├── bpmn_elements_structured.json  (164 KB, 322 elements)
 ├── bpmn_natural_language.jsonl    (81 KB, 322 entries)
 ├── bpmn_qa_pairs.jsonl            (110 KB, 1318 Q&A pairs)
-└── bpmn_comparisons.jsonl         (147 KB, 620 comparisons)
+├── bpmn_comparisons.jsonl         (147 KB, 171 comparisons)
+├── bpmn_process_generation.jsonl  (NEW, 15 examples)
+├── bpmn_xml_to_description.jsonl  (NEW, 80 examples)
+├── bpmn_validation_examples.jsonl (NEW, 85 examples)
+└── bpmn_rationale_examples.jsonl  (NEW, 88 examples)
 ```
 
 ## Next Steps

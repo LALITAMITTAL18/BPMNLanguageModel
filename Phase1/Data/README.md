@@ -25,15 +25,35 @@ This package contains scripts and generated training data for building a special
    - Question types: "What is X?", "When to use X?", "What can X connect to?", etc.
    - Best for: Instruction fine-tuning (like Alpaca, Llama-2-chat)
 
-4. **bpmn_comparisons.jsonl** (147 KB, 620 examples)
-   - **620 comparison pairs** between similar elements
+4. **bpmn_comparisons.jsonl** (147 KB, 171 examples)
+    - **171 comparison pairs** between similar elements
    - Highlights similarities and differences within categories
    - Best for: Teaching distinctions between element types
+
+5. **bpmn_process_generation.jsonl** (NEW, 15 examples)
+    - **15 text-to-BPMN XML pairs** for full process generation
+    - Format: instruction, input, output
+    - Best for: Training text to BPMN XML generation
+
+6. **bpmn_xml_to_description.jsonl** (NEW, 80 examples)
+    - **80 BPMN XML-to-description pairs** (reading comprehension)
+    - Format: instruction, input, output
+    - Best for: Training XML input to natural language description
+
+7. **bpmn_validation_examples.jsonl** (NEW, 85 examples)
+    - **85 valid/invalid BPMN XML examples** with explanations
+    - Format: instruction, input, output
+    - Best for: Training validation judgments and error explanations
+
+8. **bpmn_rationale_examples.jsonl** (NEW, 88 examples)
+    - **88 "why use X over Y" rationale examples**
+    - Format: instruction, input, output
+    - Best for: Training concise selection rationales
 
 ## Dataset Statistics
 - **Total Elements**: 322 (from official BPMN 2.0 XSD schemas)
 - **Fully Enriched Elements**: 100 core BPMN elements
-- **Total Training Examples**: 2,260+ (across all formats)
+- **Total Training Examples**: 2,079+ (across all formats)
 - **Data Source**: Official OMG BPMN specification via bpmn-io GitHub repository
 
 ## Category Breakdown
@@ -194,12 +214,11 @@ Edit `bpmn_dataset_generator.py` and add to `ELEMENTS` dictionary:
 For Phase 2, you'll want to add actual process examples:
 
 ```python
-# Create a new file: bpmn_process_examples.jsonl
+# Example format for process generation data (already included as bpmn_process_generation.jsonl)
 {
-    "process_description": "Purchase order approval process",
-    "bpmn_xml": "<definitions>...</definitions>",
-    "elements_used": ["StartEvent", "Task", "ExclusiveGateway", "EndEvent"],
-    "complexity": "simple"
+    "instruction": "Generate BPMN 2.0 XML for the described process.",
+    "input": "Purchase order approval process",
+    "output": "<definitions>...</definitions>"
 }
 ```
 

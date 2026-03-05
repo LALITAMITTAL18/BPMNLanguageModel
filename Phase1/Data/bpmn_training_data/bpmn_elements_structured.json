@@ -11,8 +11,13 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Wrapping all BPMN elements in a document",
+      "Declaring namespaces and targetNamespace",
+      "Containing process and collaboration definitions",
+      "Referencing imported schemas"
+    ],
+    "purpose": "The root container element of a BPMN document. All processes, collaborations, and supporting definitions are nested within it.",
     "variants": []
   },
   {
@@ -27,8 +32,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Importing WSDL or XSD schemas",
+      "Referencing external data types",
+      "Enabling interoperability with external systems"
+    ],
+    "purpose": "Declares an external namespace or schema to be imported into the BPMN definitions, enabling use of external types or artifacts.",
     "variants": []
   },
   {
@@ -87,8 +96,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Schema-level type for definitions",
+      "Used in XSD-based BPMN tooling",
+      "Structural container for all BPMN elements"
+    ],
+    "purpose": "XSD complex type for the BPMN definitions root element. Mirrors the definitions element structure.",
     "variants": []
   },
   {
@@ -119,8 +132,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Schema-level import type",
+      "Referencing external XSD or WSDL",
+      "Used in BPMN schema validation"
+    ],
+    "purpose": "XSD complex type for the import element, declaring external schema references.",
     "variants": []
   },
   {
@@ -144,12 +161,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "Calling shared/reusable processes",
-      "Process modularization",
-      "Cross-process orchestration",
-      "Global subprocess invocation"
+      "Base type for tasks and subprocesses",
+      "Shared activity attributes (loop, compensation, boundary events)",
+      "Foundation for all executable BPMN work elements"
     ],
-    "purpose": "A task that calls and executes another process (reusable subprocess).",
+    "purpose": "Abstract base element for all BPMN activities (tasks, subprocesses, call activities). Not used directly; all concrete activities inherit from this.",
     "variants": []
   },
   {
@@ -176,12 +192,12 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "Collapsed subprocess - hides internal complexity",
-      "Expanded subprocess - shows detailed flow",
-      "Event subprocess - handles exceptions or events",
-      "Reusable process components"
+      "Unstructured/knowledge work modeling",
+      "Activities executable in any order or skipped freely",
+      "Creative or collaborative process segments",
+      "Ad-hoc task selection by performers"
     ],
-    "purpose": "A compound activity containing other activities, gateways, events, and data.",
+    "purpose": "A subprocess in which the contained activities can be executed in any order or multiple times, with no required sequence. Suitable for knowledge work and flexible processes.",
     "variants": [
       "Embedded",
       "Event",
@@ -201,8 +217,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Early termination of multi-instance loops",
+      "Expressing quorum conditions",
+      "Stopping when enough instances complete"
+    ],
+    "purpose": "Defines the completion condition for a multi-instance loop, specifying when the loop terminates before all instances finish.",
     "variants": []
   },
   {
@@ -217,8 +237,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Documentation and annotation",
+      "Grouping related elements",
+      "Linking notes to flow objects"
+    ],
+    "purpose": "Abstract base for BPMN artifacts such as TextAnnotation, Group, and Association. Artifacts provide additional information without affecting execution.",
     "variants": []
   },
   {
@@ -233,8 +257,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data mapping between activities",
+      "Variable assignment in data flows",
+      "Input/output data transformation"
+    ],
+    "purpose": "Assigns a value from a source expression to a target expression, commonly used in data associations.",
     "variants": []
   },
   {
@@ -249,8 +277,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Source of data assignment",
+      "Expression evaluating input value",
+      "Data mapping source"
+    ],
+    "purpose": "The source expression in a BPMN Assignment, identifying where the data value comes from.",
     "variants": []
   },
   {
@@ -265,8 +297,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Target of data assignment",
+      "Expression evaluating output variable",
+      "Data mapping destination"
+    ],
+    "purpose": "The target expression in a BPMN Assignment, identifying where the data value is written.",
     "variants": []
   },
   {
@@ -312,8 +348,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Compliance and audit tracking",
+      "Process monitoring metadata",
+      "Regulatory logging requirements"
+    ],
+    "purpose": "Provides auditing metadata for BPMN elements, used for compliance tracking and logging.",
     "variants": []
   },
   {
@@ -328,8 +368,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Foundation for all BPMN elements",
+      "Providing id and documentation attributes",
+      "Base for inheritance in BPMN schema"
+    ],
+    "purpose": "Abstract base type for all BPMN elements, providing common attributes like id and documentation.",
     "variants": []
   },
   {
@@ -344,8 +388,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Mixed content elements in BPMN",
+      "Documentation elements",
+      "Text-containing BPMN elements"
+    ],
+    "purpose": "Abstract base type for BPMN elements that can contain mixed content (text and elements).",
     "variants": []
   },
   {
@@ -428,8 +476,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Reusable callable processes",
+      "Global tasks invocable from call activities",
+      "Defining process interfaces"
+    ],
+    "purpose": "Abstract base for elements that can be invoked externally, such as Process and GlobalTask.",
     "variants": []
   },
   {
@@ -444,8 +496,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Linking processes to WSDL interfaces",
+      "Service contract references",
+      "Process interface declarations"
+    ],
+    "purpose": "References an interface that a callable element implements, linking BPMN processes to service operations.",
     "variants": []
   },
   {
@@ -489,8 +545,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Reusing choreography definitions",
+      "Modular choreography design",
+      "Cross-choreography invocation"
+    ],
+    "purpose": "An activity in a choreography that calls and reuses a separately defined choreography.",
     "variants": []
   },
   {
@@ -505,8 +565,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Reusing conversation definitions",
+      "Modular collaboration design",
+      "Inter-participant conversation reuse"
+    ],
+    "purpose": "An activity that calls an externally defined conversation within a collaboration.",
     "variants": []
   },
   {
@@ -521,8 +585,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Transaction cancellation events",
+      "Cancel boundary events on transactions",
+      "Rollback triggering patterns"
+    ],
+    "purpose": "Marks an event as a Cancel event, used within transaction subprocesses to trigger cancellation.",
     "variants": []
   },
   {
@@ -545,12 +613,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "Message Intermediate Catch - wait for message",
-      "Timer Intermediate Catch - wait for time/duration",
-      "Signal Intermediate Catch - wait for signal",
-      "Conditional Intermediate Catch - wait for condition to be true"
+      "Base for events that receive triggers",
+      "Shared catch event attributes",
+      "Foundation for interrupt and non-interrupt event handling"
     ],
-    "purpose": "Represents a point where the process waits for a trigger before continuing.",
+    "purpose": "Abstract base element for all catch events (events that receive or wait for a trigger). Includes start events, intermediate catch events, and boundary events.",
     "variants": [
       "Message",
       "Timer",
@@ -573,8 +640,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Global event definition reuse",
+      "Sharing event configurations",
+      "Referencing named event types"
+    ],
+    "purpose": "References a globally defined event definition, allowing events to share a common definition.",
     "variants": []
   },
   {
@@ -589,8 +660,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Element grouping for analysis",
+      "Category-based filtering in tools",
+      "Non-executable documentation grouping"
+    ],
+    "purpose": "Groups BPMN elements for documentation or analytical purposes without affecting execution.",
     "variants": []
   },
   {
@@ -605,8 +680,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Labeling elements with categories",
+      "Group value assignments",
+      "Diagram organization via categories"
+    ],
+    "purpose": "Defines a specific value within a category, labeling elements with meaningful group identifiers.",
     "variants": []
   },
   {
@@ -621,8 +700,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Participant interaction modeling",
+      "Message sequence choreography",
+      "Cross-organization process coordination"
+    ],
+    "purpose": "Defines a BPMN choreography diagram showing interactions and message exchanges between participants.",
     "variants": []
   },
   {
@@ -637,8 +720,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Base for choreography tasks",
+      "Multi-participant interaction definition",
+      "Choreography flow nodes"
+    ],
+    "purpose": "Abstract base for choreography activities involving interactions between participants.",
     "variants": []
   },
   {
@@ -662,12 +749,11 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "External systems",
-      "Partner organizations",
-      "Different business units",
-      "Service providers and consumers"
+      "Listing participants in a conversation",
+      "Conversation node participant binding",
+      "Multi-party conversation modeling"
     ],
-    "purpose": "Represents an entity (person, system, organization) that participates in a collaboration.",
+    "purpose": "References a participant (pool) from within a conversation node, specifying which participant is involved in that conversation.",
     "variants": []
   },
   {
@@ -682,8 +768,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Two-party message exchange in choreography",
+      "Request-response choreography steps",
+      "Modeling participant interactions"
+    ],
+    "purpose": "A single interaction between two participants in a choreography, involving message exchange.",
     "variants": []
   },
   {
@@ -734,8 +824,13 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Modeling inter-organizational processes",
+      "Buyer-seller or client-server interactions",
+      "Multi-participant process coordination",
+      "Containing pools and message flows"
+    ],
+    "purpose": "Defines a collaboration diagram showing multiple participants (pools) interacting via message flows.",
     "variants": []
   },
   {
@@ -750,8 +845,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Referencing choreography from collaboration",
+      "Call choreography linkage",
+      "Choreography reuse reference"
+    ],
+    "purpose": "A reference to a choreography definition, used in call choreography or collaboration contexts.",
     "variants": []
   },
   {
@@ -766,8 +865,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Transaction rollback compensation",
+      "Undoing completed tasks",
+      "Compensation boundary and throw events"
+    ],
+    "purpose": "Marks an event as a Compensation event, triggering compensation handlers for completed activities.",
     "variants": []
   },
   {
@@ -782,8 +885,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Multi-instance early completion",
+      "Conditional MI termination",
+      "Complex loop behavior specification"
+    ],
+    "purpose": "Defines complex completion behavior for multi-instance activities, specifying conditions for early completion.",
     "variants": []
   },
   {
@@ -798,8 +905,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Event condition expressions",
+      "Loop continuation conditions",
+      "Conditional routing expressions"
+    ],
+    "purpose": "A condition expression used in conditional event definitions or loop characteristics.",
     "variants": []
   },
   {
@@ -821,13 +932,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "None Start Event - process starts immediately",
-      "Message Start Event - triggered by incoming message",
-      "Timer Start Event - triggered at specific time or interval",
-      "Signal Start Event - triggered by signal broadcast",
-      "Conditional Start Event - triggered when condition is met"
+      "Base type for start, end, and intermediate events",
+      "Shared event attributes",
+      "Foundation for event-based process control"
     ],
-    "purpose": "Indicates where a process begins. Triggers the start of a process instance.",
+    "purpose": "Abstract base element for all BPMN events (start, end, intermediate). Not used directly; all concrete events inherit from this.",
     "variants": [
       "None",
       "Message",
@@ -882,8 +991,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Event subprocess activation",
+      "Conditional subprocess triggering",
+      "Data-driven sub-process start"
+    ],
+    "purpose": "The condition evaluated to determine if an event subprocess should activate.",
     "variants": []
   },
   {
@@ -898,8 +1011,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Condition-triggered start events",
+      "Intermediate condition waits",
+      "Data-driven event triggering"
+    ],
+    "purpose": "Marks an event as a Conditional event, triggered when a specified condition becomes true.",
     "variants": []
   },
   {
@@ -914,8 +1031,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Grouping related message exchanges",
+      "Conversation-level collaboration abstraction",
+      "Logical communication grouping"
+    ],
+    "purpose": "Represents a set of related message exchanges (a conversation) between participants in a collaboration.",
     "variants": []
   },
   {
@@ -941,12 +1062,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Connecting conversation nodes in collaboration diagrams",
+      "Linking sub-conversations within a global conversation",
+      "Modeling communicative relationships between parties"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "Links two conversation nodes within a conversation diagram, representing a communicative relationship between them.",
     "variants": []
   },
   {
@@ -961,8 +1081,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Linking conversations to participants",
+      "Collaboration diagram connectivity",
+      "Message routing in collaborations"
+    ],
+    "purpose": "Connects a conversation node to a participant or pool in a collaboration diagram.",
     "variants": []
   },
   {
@@ -977,8 +1101,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Base for conversation and sub-conversation",
+      "Communication node in collaboration",
+      "Conversation diagram abstraction"
+    ],
+    "purpose": "Abstract base for nodes in a conversation diagram, representing communication units.",
     "variants": []
   },
   {
@@ -993,8 +1121,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Linking incoming messages to process instances",
+      "Order ID or case number correlation",
+      "Message routing via correlation keys"
+    ],
+    "purpose": "Groups correlation properties to uniquely identify a process instance for message correlation.",
     "variants": []
   },
   {
@@ -1009,8 +1141,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Correlation key composition",
+      "Property-based message routing",
+      "Referencing correlation attributes"
+    ],
+    "purpose": "References a correlation property within a correlation key definition.",
     "variants": []
   },
   {
@@ -1025,8 +1161,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Message correlation configuration",
+      "Business key definition",
+      "Instance identification properties"
+    ],
+    "purpose": "Defines a property used to correlate messages to specific process instances.",
     "variants": []
   },
   {
@@ -1041,8 +1181,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Runtime message correlation binding",
+      "Message data extraction for correlation",
+      "Property-to-message mapping"
+    ],
+    "purpose": "Binds a correlation property to a data path in a message for runtime correlation.",
     "variants": []
   },
   {
@@ -1057,8 +1201,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Property data extraction",
+      "XPath expressions on messages",
+      "Data binding expressions"
+    ],
+    "purpose": "An expression path identifying a specific piece of data within a message or data object.",
     "variants": []
   },
   {
@@ -1073,8 +1221,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data extraction for correlation",
+      "XPath or expression-based property retrieval",
+      "Message parsing for correlation"
+    ],
+    "purpose": "An expression that extracts the correlation property value from a message.",
     "variants": []
   },
   {
@@ -1089,8 +1241,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Message data extraction",
+      "Correlation property retrieval",
+      "Message content mapping"
+    ],
+    "purpose": "An expression that identifies the location of data within a message for correlation or data mapping.",
     "variants": []
   },
   {
@@ -1105,8 +1261,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Process-level correlation subscription",
+      "Waiting for correlated messages",
+      "Instance-to-message binding"
+    ],
+    "purpose": "Defines the subscription for message correlation, linking process instances to expected messages.",
     "variants": []
   },
   {
@@ -1153,8 +1313,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Flow source declaration",
+      "Directed connection origin",
+      "Element connectivity"
+    ],
+    "purpose": "References the source element of a flow (sequence flow, message flow, association, etc.).",
     "variants": []
   },
   {
@@ -1169,8 +1333,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Flow target declaration",
+      "Directed connection destination",
+      "Element connectivity"
+    ],
+    "purpose": "References the target element of a flow (sequence flow, message flow, association, etc.).",
     "variants": []
   },
   {
@@ -1185,8 +1353,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data transformation in associations",
+      "Input/output value mapping",
+      "Expression-based data conversion"
+    ],
+    "purpose": "An expression that transforms data during a data input or output association.",
     "variants": []
   },
   {
@@ -1201,8 +1373,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Formal input declaration for activities",
+      "Data-driven task configuration",
+      "I/O specification input definition"
+    ],
+    "purpose": "Represents an explicit input data element for an activity or process, part of the I/O specification.",
     "variants": []
   },
   {
@@ -1228,12 +1404,12 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Connecting a DataObject as input to a task",
+      "Mapping data store records into an activity",
+      "Input data binding for service tasks",
+      "Specifying transformation of incoming data"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "Defines data flowing into an activity from a data object, data store, or property. Specifies the source of input data for the activity's execution.",
     "variants": []
   },
   {
@@ -1288,12 +1464,12 @@
       "DataAssociation"
     ],
     "common_patterns": [
-      "Documents required as input",
-      "Data produced as output",
-      "Shared information between activities",
-      "Business objects manipulated in the process"
+      "Placing a DataObject on the diagram",
+      "Showing a document required by or produced by a task",
+      "Multiple references to the same data in different states",
+      "Connecting activities to shared business data"
     ],
-    "purpose": "Represents information flowing through the process, such as documents or business data.",
+    "purpose": "A reference to a DataObject definition placed within a process diagram. Multiple references can point to the same DataObject, representing different states or instances.",
     "variants": []
   },
   {
@@ -1308,8 +1484,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Formal output declaration for activities",
+      "Capturing task results",
+      "I/O specification output definition"
+    ],
+    "purpose": "Represents an explicit output data element produced by an activity, part of the I/O specification.",
     "variants": []
   },
   {
@@ -1335,12 +1515,12 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Writing task results to a DataObject",
+      "Persisting activity output to a data store",
+      "Output variable assignment from a task",
+      "Data transformation on activity output"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "Defines data flowing out of an activity to a data object, data store, or property. Specifies where the activity's output is written.",
     "variants": []
   },
   {
@@ -1355,8 +1535,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data lifecycle modeling",
+      "State-based data routing",
+      "Conditional processing based on data state"
+    ],
+    "purpose": "Defines the state of a data object (e.g., 'approved', 'pending'), capturing its lifecycle within a process.",
     "variants": []
   },
   {
@@ -1409,12 +1593,12 @@
       "DataAssociation"
     ],
     "common_patterns": [
-      "Database read/write operations",
-      "Shared data repository",
-      "Persistent storage",
-      "Data lookup sources"
+      "Showing database access in a process",
+      "Referencing shared persistent storage",
+      "Connecting activities to a database via data associations",
+      "Modeling read/write operations to external systems"
     ],
-    "purpose": "Represents a persistent data store (database, file system, etc.) accessed by the process.",
+    "purpose": "A reference to a DataStore definition placed within a process diagram. Represents access to persistent storage (databases, file systems) within a specific process context.",
     "variants": []
   },
   {
@@ -1429,8 +1613,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Adding descriptions to elements",
+      "Process documentation",
+      "Compliance notes and rationale"
+    ],
+    "purpose": "Provides human-readable documentation text for any BPMN element, aiding comprehension and maintenance.",
     "variants": []
   },
   {
@@ -1482,8 +1670,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Service endpoint declaration",
+      "Partner entity address",
+      "Web service endpoint reference"
+    ],
+    "purpose": "Defines a network endpoint (e.g., a URL or address) for a partner entity or service interaction.",
     "variants": []
   },
   {
@@ -1498,8 +1690,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Error type definition",
+      "Named fault/exception declarations",
+      "Error boundary event targeting"
+    ],
+    "purpose": "Defines a named error type that can be thrown by an activity and caught by error boundary events.",
     "variants": []
   },
   {
@@ -1514,8 +1710,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Exception handling patterns",
+      "Error boundary events on tasks",
+      "Fault-tolerant process design"
+    ],
+    "purpose": "Marks an event as an Error event, representing a fault or exception thrown or caught in a process.",
     "variants": []
   },
   {
@@ -1530,8 +1730,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Escalation event definitions",
+      "Supervisor notification patterns",
+      "SLA breach escalation handling"
+    ],
+    "purpose": "Defines a named escalation that can be triggered and caught for exception handling in hierarchical processes.",
     "variants": []
   },
   {
@@ -1546,8 +1750,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Supervisor escalation patterns",
+      "Non-interrupting escalation handling",
+      "SLA breach notification"
+    ],
+    "purpose": "Marks an event as an Escalation event, used to escalate issues without ending the activity.",
     "variants": []
   },
   {
@@ -1597,8 +1805,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Base event definition type",
+      "Foundation for specific event types",
+      "Shared event properties"
+    ],
+    "purpose": "Abstract base for all BPMN event definitions, providing shared event configuration attributes.",
     "variants": []
   },
   {
@@ -1646,8 +1858,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Condition expressions on gateways",
+      "Data assignment expressions",
+      "Loop condition expressions"
+    ],
+    "purpose": "Abstract base for BPMN expressions, providing a mechanism to define evaluable conditions or values.",
     "variants": []
   },
   {
@@ -1662,8 +1878,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Vendor-specific BPMN extensions",
+      "Custom execution attributes",
+      "Extended process metadata"
+    ],
+    "purpose": "Declares an extension to the BPMN schema, enabling custom attributes or elements for tooling or execution engines.",
     "variants": []
   },
   {
@@ -1678,8 +1898,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Camunda/Flowable execution properties",
+      "Custom task configurations",
+      "Tool-specific metadata containers"
+    ],
+    "purpose": "Container for extension elements within any BPMN element, holding vendor or tool-specific data.",
     "variants": []
   },
   {
@@ -1694,8 +1918,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Base for tasks, gateways, and events",
+      "Shared flow element attributes",
+      "Categorizing process participants"
+    ],
+    "purpose": "Abstract base for all elements that participate in process flow, including flow nodes and edges.",
     "variants": []
   },
   {
@@ -1710,8 +1938,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Category association reference",
+      "Diagram grouping",
+      "Element-to-category linkage"
+    ],
+    "purpose": "References a category value, associating an element with a defined category group.",
     "variants": []
   },
   {
@@ -1726,8 +1958,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Base for executable flow nodes",
+      "Shared incoming/outgoing flow attributes",
+      "Task, gateway, and event foundation"
+    ],
+    "purpose": "Abstract base for flow nodes (activities, gateways, events) that connect via sequence flows.",
     "variants": []
   },
   {
@@ -1742,8 +1978,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Flow node incoming connectivity",
+      "Join point declaration",
+      "Sequence flow mapping"
+    ],
+    "purpose": "References an incoming sequence flow for a flow node, indicating which flows arrive at it.",
     "variants": []
   },
   {
@@ -1758,8 +1998,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Flow node outgoing connectivity",
+      "Split point declaration",
+      "Sequence flow mapping"
+    ],
+    "purpose": "References an outgoing sequence flow from a flow node, indicating which flows depart from it.",
     "variants": []
   },
   {
@@ -1774,8 +2018,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Gateway condition expressions",
+      "Loop condition evaluation",
+      "Data mapping expressions"
+    ],
+    "purpose": "A formal, evaluable expression (e.g., XPath or JavaScript) used in conditions, loop tests, and data mappings.",
     "variants": []
   },
   {
@@ -1800,12 +2048,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "If-then-else decision logic",
-      "Switch/case branching",
-      "Binary decisions (approved/rejected)",
-      "Routing based on data values"
+      "Base type for all gateway types",
+      "Shared gateway attributes (direction, default flow)",
+      "Foundation for process routing and synchronization"
     ],
-    "purpose": "Creates alternative paths in the process flow. Only one path is taken based on conditions.",
+    "purpose": "Abstract base element for all BPMN gateways (exclusive, parallel, inclusive, event-based, complex). Controls flow branching and merging.",
     "variants": [
       "Data-Based (XOR)",
       "Event-Based"
@@ -1852,8 +2099,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Global choreography reuse",
+      "Cross-process interaction patterns",
+      "Multi-participant reusable tasks"
+    ],
+    "purpose": "A globally defined reusable choreography task for cross-participant interactions.",
     "variants": []
   },
   {
@@ -1868,8 +2119,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Reusable conversation definitions",
+      "Global collaboration patterns",
+      "Cross-collaboration message templates"
+    ],
+    "purpose": "A globally defined conversation reusable across multiple collaboration diagrams.",
     "variants": []
   },
   {
@@ -1941,8 +2196,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Reusable task definitions",
+      "Shared task logic across processes",
+      "Global service invocations"
+    ],
+    "purpose": "A globally defined reusable task that can be called from multiple processes via a CallActivity.",
     "variants": []
   },
   {
@@ -2014,8 +2273,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Human task assignment",
+      "Person or role allocation",
+      "User task responsibility definition"
+    ],
+    "purpose": "Specifies that a human resource is responsible for performing a task.",
     "variants": []
   },
   {
@@ -2030,8 +2293,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Implicit process completion signaling",
+      "Non-explicit process end",
+      "Embedded subprocess completion"
+    ],
+    "purpose": "An implicit throw event at the end of a process that transmits a result to the calling process without an explicit end event.",
     "variants": []
   },
   {
@@ -2076,8 +2343,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Activity input requirements",
+      "Conditional input sets",
+      "Data-driven activity activation"
+    ],
+    "purpose": "Groups data inputs required for an activity to start, defining sets of mandatory or optional inputs.",
     "variants": []
   },
   {
@@ -2092,8 +2363,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Input set composition",
+      "Required data grouping",
+      "Activity input specification"
+    ],
+    "purpose": "References data inputs that belong to an input set, grouping required data for an activity.",
     "variants": []
   },
   {
@@ -2108,8 +2383,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Optional data input binding",
+      "Flexible activity input configuration",
+      "Partial data activation"
+    ],
+    "purpose": "References data inputs that are optional for an activity to start, enriching input set flexibility.",
     "variants": []
   },
   {
@@ -2124,8 +2403,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Mid-execution data access",
+      "Running task data binding",
+      "Concurrent data consumption"
+    ],
+    "purpose": "References data inputs accessible while an activity is executing, for mid-execution data access.",
     "variants": []
   },
   {
@@ -2140,8 +2423,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "I/O set pairing",
+      "Activity input-output configuration",
+      "Data specification linking"
+    ],
+    "purpose": "References the output sets associated with an input set, defining valid input-output combinations.",
     "variants": []
   },
   {
@@ -2156,8 +2443,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Service interface definition",
+      "WSDL port type modeling",
+      "Operation grouping for service tasks"
+    ],
+    "purpose": "Defines a service interface with one or more operations that a callable element can implement or invoke.",
     "variants": []
   },
   {
@@ -2244,8 +2535,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Activity-to-service data binding",
+      "Operation I/O mapping",
+      "Service task data configuration"
+    ],
+    "purpose": "Binds an operation's input and output messages to specific data inputs and outputs of an activity.",
     "variants": []
   },
   {
@@ -2260,8 +2555,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Full activity data specification",
+      "Service task I/O definition",
+      "Data-driven task configuration"
+    ],
+    "purpose": "Defines the full I/O specification for an activity, including all input and output sets and data elements.",
     "variants": []
   },
   {
@@ -2276,8 +2575,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Defining message payload types",
+      "Data object type declarations",
+      "Typed data element configuration"
+    ],
+    "purpose": "Defines the data type for messages, data objects, properties, and other data elements in BPMN.",
     "variants": []
   },
   {
@@ -2318,8 +2621,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Organizational unit assignment to lanes",
+      "Department-based partitioning",
+      "Resource allocation visualization"
+    ],
+    "purpose": "Specifies the partition element (e.g., an organizational unit) that a lane represents.",
     "variants": []
   },
   {
@@ -2334,8 +2641,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Lane membership declaration",
+      "Responsibility assignment to flow nodes",
+      "Swimlane-to-task mapping"
+    ],
+    "purpose": "References a flow node that belongs to a specific lane, associating elements with swimlane responsibility.",
     "variants": []
   },
   {
@@ -2350,8 +2661,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Hierarchical lane nesting",
+      "Sub-lane organizational breakdown",
+      "Multi-level swimlane diagrams"
+    ],
+    "purpose": "Defines a nested set of lanes within a parent lane, supporting hierarchical swimlane structures.",
     "variants": []
   },
   {
@@ -2366,8 +2681,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Swimlane container in a pool",
+      "Organizing tasks by department or role",
+      "Visual responsibility grouping"
+    ],
+    "purpose": "Contains a set of lanes (swimlanes) within a pool or process, organizing activities by responsibility.",
     "variants": []
   },
   {
@@ -2382,8 +2701,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Off-page connectors",
+      "Process flow jumps",
+      "Reducing diagram clutter with link pairs"
+    ],
+    "purpose": "Marks an event as a Link event, enabling off-page connectors or jumps within a process.",
     "variants": []
   },
   {
@@ -2398,8 +2721,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Link event source reference",
+      "Off-page connector source",
+      "Flow jump origin"
+    ],
+    "purpose": "References the source element of a link event definition, indicating where the link originates.",
     "variants": []
   },
   {
@@ -2414,8 +2741,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Link event target reference",
+      "Off-page connector target",
+      "Flow jump destination"
+    ],
+    "purpose": "References the target element of a link event definition, indicating where the link goes.",
     "variants": []
   },
   {
@@ -2430,8 +2761,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Loop configuration on tasks",
+      "Repeating activity patterns",
+      "Standard or multi-instance loop base"
+    ],
+    "purpose": "Abstract base for loop behavior on activities, supporting both standard and multi-instance loops.",
     "variants": []
   },
   {
@@ -2490,12 +2825,12 @@
       "Pool"
     ],
     "common_patterns": [
-      "Request-response patterns",
-      "Notifications between organizations",
-      "Cross-pool communication",
-      "Message exchange between participants"
+      "Named message type for message events",
+      "Defining message payload structure",
+      "Referenced by message event definitions and send/receive tasks",
+      "Enabling typed inter-participant communication"
     ],
-    "purpose": "Shows communication between different participants (pools) in a collaboration.",
+    "purpose": "Defines a named message type used in message events and message tasks for inter-participant communication. References the item definition describing the payload structure.",
     "variants": []
   },
   {
@@ -2510,8 +2845,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Process start on message receipt",
+      "Inter-participant message exchange",
+      "Intermediate message wait patterns"
+    ],
+    "purpose": "Marks an event as a Message event, representing the sending or receiving of a specific message.",
     "variants": []
   },
   {
@@ -2526,8 +2865,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Operation invocation reference",
+      "Task-to-operation binding",
+      "Service task operation specification"
+    ],
+    "purpose": "References an operation from within a message event definition or task, specifying the invoked operation.",
     "variants": []
   },
   {
@@ -2594,12 +2937,11 @@
       "Pool"
     ],
     "common_patterns": [
-      "Request-response patterns",
-      "Notifications between organizations",
-      "Cross-pool communication",
-      "Message exchange between participants"
+      "Binding message flows to conversations",
+      "Conversation-level message flow modeling",
+      "Connecting message exchanges to collaboration context"
     ],
-    "purpose": "Shows communication between different participants (pools) in a collaboration.",
+    "purpose": "Associates a message flow with a conversation, linking the message exchange to its context in a conversation diagram.",
     "variants": []
   },
   {
@@ -2614,8 +2956,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Runtime monitoring configuration",
+      "KPI and performance tracking",
+      "Process observability metadata"
+    ],
+    "purpose": "Provides monitoring metadata for BPMN elements, enabling runtime observation and performance tracking.",
     "variants": []
   },
   {
@@ -2630,8 +2976,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Processing a list of items",
+      "Parallel task execution per item",
+      "Sequential batch processing"
+    ],
+    "purpose": "Configures multi-instance (parallel or sequential) execution of an activity over a collection of items.",
     "variants": []
   },
   {
@@ -2646,8 +2996,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Fixed multi-instance count",
+      "Collection size specification",
+      "Cardinality-based instance creation"
+    ],
+    "purpose": "Defines the number of instances to create in a multi-instance loop (the cardinality of the collection).",
     "variants": []
   },
   {
@@ -2662,8 +3016,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Multi-instance loop data source",
+      "Collection-based iteration",
+      "Parallel/sequential multi-instance input"
+    ],
+    "purpose": "References the data input collection for a multi-instance activity, providing items to iterate over.",
     "variants": []
   },
   {
@@ -2678,8 +3036,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Multi-instance result collection",
+      "Aggregating parallel task outputs",
+      "Sequential task output accumulation"
+    ],
+    "purpose": "References the data output collection for a multi-instance activity, collecting results from each instance.",
     "variants": []
   },
   {
@@ -2694,8 +3056,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Per-instance input variable",
+      "Loop iteration item",
+      "Multi-instance data binding"
+    ],
+    "purpose": "Represents a single item from the input collection in a multi-instance loop iteration.",
     "variants": []
   },
   {
@@ -2710,8 +3076,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Per-instance output variable",
+      "Iteration result capture",
+      "Multi-instance output collection"
+    ],
+    "purpose": "Represents the output item produced by a single multi-instance loop iteration.",
     "variants": []
   },
   {
@@ -2726,8 +3096,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Service operation definition",
+      "Request-response operation modeling",
+      "WSDL operation equivalent"
+    ],
+    "purpose": "Defines a single operation within an interface, specifying its input message, output message, and error references.",
     "variants": []
   },
   {
@@ -2742,8 +3116,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Operation input message binding",
+      "Service request definition",
+      "WSDL-style message linking"
+    ],
+    "purpose": "References the input message of an operation, linking the operation to its request message definition.",
     "variants": []
   },
   {
@@ -2758,8 +3136,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Operation output message binding",
+      "Service response definition",
+      "WSDL-style response linking"
+    ],
+    "purpose": "References the output message of an operation, linking the operation to its response message definition.",
     "variants": []
   },
   {
@@ -2774,8 +3156,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Error event targeting",
+      "Linking boundary events to error types",
+      "Error catch configuration"
+    ],
+    "purpose": "References an error definition for use in error event definitions or error boundary events.",
     "variants": []
   },
   {
@@ -2790,8 +3176,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Activity output declarations",
+      "Conditional output sets",
+      "Data production specification"
+    ],
+    "purpose": "Groups data outputs produced by an activity, defining sets of mandatory or optional outputs.",
     "variants": []
   },
   {
@@ -2806,8 +3196,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Output set composition",
+      "Produced data grouping",
+      "Activity output specification"
+    ],
+    "purpose": "References data outputs that belong to an output set.",
     "variants": []
   },
   {
@@ -2822,8 +3216,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Optional output production",
+      "Conditional output binding",
+      "Flexible output configuration"
+    ],
+    "purpose": "References data outputs that are optionally produced by an activity.",
     "variants": []
   },
   {
@@ -2838,8 +3236,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Incremental output production",
+      "Mid-execution result publishing",
+      "Streaming output patterns"
+    ],
+    "purpose": "References data outputs produced while an activity is executing, before it completes.",
     "variants": []
   },
   {
@@ -2854,8 +3256,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "I/O set pairing",
+      "Bidirectional I/O specification",
+      "Activity data configuration"
+    ],
+    "purpose": "References the input sets associated with an output set, defining valid input-output combinations.",
     "variants": []
   },
   {
@@ -2929,8 +3335,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Linking tasks to service interfaces",
+      "Service task interface binding",
+      "Operation execution reference"
+    ],
+    "purpose": "References an interface definition from within an activity, linking the activity to its service contract.",
     "variants": []
   },
   {
@@ -2945,8 +3355,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Partner entity endpoint binding",
+      "Service address reference",
+      "External system endpoint linking"
+    ],
+    "purpose": "References an endpoint definition for a partner entity, specifying the service address.",
     "variants": []
   },
   {
@@ -2972,12 +3386,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Linking participants to conversations",
+      "Collaboration diagram participant binding",
+      "Specifying who is involved in a conversation"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "Associates a participant with a conversation node in a collaboration diagram, indicating that participant takes part in that conversation.",
     "variants": []
   },
   {
@@ -3001,12 +3414,11 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "External systems",
-      "Partner organizations",
-      "Different business units",
-      "Service providers and consumers"
+      "Choreography initiating participant",
+      "Identifying the requesting side of a choreography task",
+      "Two-party choreography participant binding"
     ],
-    "purpose": "Represents an entity (person, system, organization) that participates in a collaboration.",
+    "purpose": "References the inner (initiating) participant in a choreography task, indicating which participant sends the initiating message.",
     "variants": []
   },
   {
@@ -3030,12 +3442,11 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "External systems",
-      "Partner organizations",
-      "Different business units",
-      "Service providers and consumers"
+      "Choreography responding participant",
+      "Identifying the receiving side of a choreography task",
+      "Two-party choreography participant binding"
     ],
-    "purpose": "Represents an entity (person, system, organization) that participates in a collaboration.",
+    "purpose": "References the outer (responding) participant in a choreography task, indicating which participant receives the initiating message.",
     "variants": []
   },
   {
@@ -3059,12 +3470,12 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "External systems",
-      "Partner organizations",
-      "Different business units",
-      "Service providers and consumers"
+      "Multi-instance pool configuration",
+      "Defining min/max participant count",
+      "Modeling pools with multiple instances (e.g., multiple customers)",
+      "Dynamic participant cardinality"
     ],
-    "purpose": "Represents an entity (person, system, organization) that participates in a collaboration.",
+    "purpose": "Defines the minimum and maximum number of instances for a participant (pool) in a collaboration, supporting multi-instance participant patterns.",
     "variants": []
   },
   {
@@ -3079,8 +3490,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "External partner declaration",
+      "Third-party system modeling",
+      "Partner entity endpoint association"
+    ],
+    "purpose": "Defines an external partner entity that interacts with the process, associated with an endpoint.",
     "variants": []
   },
   {
@@ -3095,8 +3510,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Partner interface assignment",
+      "Role-based collaboration",
+      "Service provider role definition"
+    ],
+    "purpose": "Defines the role of a partner in an interaction, linked to an interface the partner provides.",
     "variants": []
   },
   {
@@ -3111,8 +3530,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Task responsibility assignment",
+      "Role-based task allocation",
+      "Resource assignment to activities"
+    ],
+    "purpose": "Defines the resource or role responsible for performing a task or activity.",
     "variants": []
   },
   {
@@ -3127,8 +3550,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Task claimable by multiple users",
+      "Human task ownership pool",
+      "User task candidate assignment"
+    ],
+    "purpose": "Defines a potential owner resource for a task, typically used in human task claim patterns.",
     "variants": []
   },
   {
@@ -3155,12 +3582,12 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "Collapsed subprocess - hides internal complexity",
-      "Expanded subprocess - shows detailed flow",
-      "Event subprocess - handles exceptions or events",
-      "Reusable process components"
+      "Defining an executable business process",
+      "Standalone process definition",
+      "Containing all flow nodes and connecting objects",
+      "Referencing lanes/pools for organizational context"
     ],
-    "purpose": "A compound activity containing other activities, gateways, events, and data.",
+    "purpose": "Defines a complete BPMN process containing all flow elements (events, activities, gateways, sequence flows). The top-level container for executable business logic.",
     "variants": [
       "Embedded",
       "Event",
@@ -3180,8 +3607,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Process inheritance patterns",
+      "Extending base process definitions",
+      "Callable element composition"
+    ],
+    "purpose": "References another callable element that this callable element supports or extends.",
     "variants": []
   },
   {
@@ -3196,8 +3627,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Process-level variable definition",
+      "Activity-scoped data storage",
+      "Local data property declaration"
+    ],
+    "purpose": "Defines a local process or activity property, acting as a variable scoped to that element.",
     "variants": []
   },
   {
@@ -3242,8 +3677,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Custom element relationships",
+      "Tool-specific traceability links",
+      "Non-standard BPMN associations"
+    ],
+    "purpose": "Defines a non-standard relationship between two BPMN elements for tool-specific purposes.",
     "variants": []
   },
   {
@@ -3258,8 +3697,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Visual rendering instructions",
+      "Diagram appearance metadata",
+      "Tool-specific display hints"
+    ],
+    "purpose": "Contains rendering hints or visual metadata for BPMN elements, used by modelers and viewers.",
     "variants": []
   },
   {
@@ -3274,8 +3717,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource definition",
+      "Role and system entity definition",
+      "Resource pool declaration"
+    ],
+    "purpose": "Defines a named resource (human, system, or role) that can be assigned to perform activities.",
     "variants": []
   },
   {
@@ -3290,8 +3737,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Dynamic resource assignment",
+      "Runtime role resolution",
+      "Data-driven task allocation"
+    ],
+    "purpose": "An expression that dynamically evaluates which resource is assigned to an activity at runtime.",
     "variants": []
   },
   {
@@ -3306,8 +3757,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource parameterization",
+      "Dynamic resource configuration",
+      "Callable element resource binding"
+    ],
+    "purpose": "Defines a parameter used in resource assignment expressions for a callable element.",
     "variants": []
   },
   {
@@ -3322,8 +3777,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource parameter value binding",
+      "Dynamic resource configuration",
+      "Instance-level resource assignment"
+    ],
+    "purpose": "Binds a resource parameter to a specific expression or value for a given resource role.",
     "variants": []
   },
   {
@@ -3338,8 +3797,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Role-based resource assignment",
+      "Task ownership modeling",
+      "Human performer role definition"
+    ],
+    "purpose": "Defines the role a resource plays in relation to an activity (performer, owner, etc.).",
     "variants": []
   },
   {
@@ -3354,8 +3817,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Linking activity to resource",
+      "Resource role binding",
+      "Task performer reference"
+    ],
+    "purpose": "References a defined resource from within a resource role, linking the role to the resource definition.",
     "variants": []
   },
   {
@@ -3370,8 +3837,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Top-level BPMN definitions",
+      "Process, collaboration, message declarations",
+      "Global element definitions"
+    ],
+    "purpose": "Abstract base for top-level BPMN elements that reside directly under the definitions element.",
     "variants": []
   },
   {
@@ -3424,12 +3895,12 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "Data transformation and manipulation",
-      "Simple calculations",
-      "Variable assignments",
-      "Inline business logic"
+      "Inline script content for ScriptTask",
+      "Embedding JavaScript, Groovy, or Python logic",
+      "Variable manipulation scripts",
+      "Simple data transformation code"
     ],
-    "purpose": "A task that executes a script in a specified scripting language.",
+    "purpose": "Contains the executable script body for a ScriptTask. The script is written in the language specified on the parent ScriptTask element.",
     "variants": []
   },
   {
@@ -3509,8 +3980,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Conditional routing from gateways",
+      "Boolean path conditions",
+      "XOR gateway routing conditions"
+    ],
+    "purpose": "An expression on a sequence flow that defines the condition under which that path is taken.",
     "variants": []
   },
   {
@@ -3554,8 +4029,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Cross-process broadcast events",
+      "Global notification signals",
+      "Signal event definition reference"
+    ],
+    "purpose": "Defines a named signal that can be thrown and caught across processes, enabling broadcast communication.",
     "variants": []
   },
   {
@@ -3570,8 +4049,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Cross-process signal broadcast",
+      "Global notifications",
+      "Signal start and catch patterns"
+    ],
+    "purpose": "Marks an event as a Signal event, enabling broadcast-style communication across processes.",
     "variants": []
   },
   {
@@ -3586,8 +4069,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Retry loops with condition",
+      "Repeat-until patterns",
+      "Loop-limited task repetition"
+    ],
+    "purpose": "Configures a standard (while/until) loop on an activity, with a loop condition and optional limits.",
     "variants": []
   },
   {
@@ -3602,8 +4089,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Loop continuation condition",
+      "While-loop semantics in BPMN",
+      "Controlling retry logic"
+    ],
+    "purpose": "Specifies the boolean condition evaluated to decide whether a standard loop continues or terminates.",
     "variants": []
   },
   {
@@ -3657,8 +4148,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Grouping choreography interactions",
+      "Encapsulating complex message sequences",
+      "Hierarchical choreography design"
+    ],
+    "purpose": "An embedded sub-choreography within a choreography diagram, encapsulating a group of interactions.",
     "variants": []
   },
   {
@@ -3673,8 +4168,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Nested conversation grouping",
+      "Complex message sequence encapsulation",
+      "Hierarchical collaboration design"
+    ],
+    "purpose": "An embedded sub-conversation within a collaboration, grouping related message exchanges.",
     "variants": []
   },
   {
@@ -3764,8 +4263,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Immediate process termination",
+      "Canceling all parallel paths",
+      "Process abort on critical error"
+    ],
+    "purpose": "Marks an end event as a Terminate event, immediately stopping all active tokens in the process.",
     "variants": []
   },
   {
@@ -3807,8 +4310,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Annotation text content",
+      "Process documentation notes",
+      "Labeling elements with explanations"
+    ],
+    "purpose": "Contains the text content of a TextAnnotation, providing the human-readable note text.",
     "variants": []
   },
   {
@@ -3831,12 +4338,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "Message Intermediate Throw - send message during flow",
-      "Signal Intermediate Throw - broadcast signal",
-      "Escalation Intermediate Throw - trigger escalation",
-      "Link Intermediate Throw - go-to target for off-page connector"
+      "Base for events that emit signals or messages",
+      "Shared throw event attributes",
+      "Foundation for process signaling and message sending"
     ],
-    "purpose": "Represents a point where the process generates or throws an event.",
+    "purpose": "Abstract base element for all throw events (events that emit or trigger something). Includes intermediate throw events and end events.",
     "variants": [
       "None",
       "Message",
@@ -3859,8 +4365,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Scheduled process starts",
+      "Timeout handling with boundary events",
+      "Periodic process triggers"
+    ],
+    "purpose": "Marks an event as a Timer event, triggering based on a specific date, duration, or cycle.",
     "variants": []
   },
   {
@@ -3875,8 +4385,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Scheduled process start at exact time",
+      "Deadline-based event triggering",
+      "Fixed-date timer configuration"
+    ],
+    "purpose": "Specifies an ISO 8601 date-time for a timer event, triggering at a specific point in time.",
     "variants": []
   },
   {
@@ -3891,8 +4405,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Timeout configuration",
+      "Wait period definition",
+      "Duration-based timer events"
+    ],
+    "purpose": "Specifies an ISO 8601 duration for a timer event, triggering after a time period elapses.",
     "variants": []
   },
   {
@@ -3907,8 +4425,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Recurring timer events",
+      "Scheduled periodic processes",
+      "Cron-based process triggers"
+    ],
+    "purpose": "Specifies a repeating timer cycle (cron or ISO 8601 interval) for periodic event triggering.",
     "variants": []
   },
   {
@@ -4016,8 +4538,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Schema base for all activity types",
+      "Task and subprocess type validation",
+      "Activity schema inheritance"
+    ],
+    "purpose": "XSD complex type for BPMN Activity, base schema type for all task and subprocess variants.",
     "variants": []
   },
   {
@@ -4060,12 +4586,11 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "Collapsed subprocess - hides internal complexity",
-      "Expanded subprocess - shows detailed flow",
-      "Event subprocess - handles exceptions or events",
-      "Reusable process components"
+      "Ad-hoc subprocess schema",
+      "Unstructured work subprocess type",
+      "Flexible execution order structure"
     ],
-    "purpose": "A compound activity containing other activities, gateways, events, and data.",
+    "purpose": "XSD complex type for AdHocSubProcess — a subprocess whose activities can be executed in any order without predefined sequence constraints.",
     "variants": [
       "Embedded",
       "Event",
@@ -4087,8 +4612,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Schema type for artifacts",
+      "Annotation and grouping schema",
+      "Non-executable element types"
+    ],
+    "purpose": "XSD complex type for BPMN Artifact elements (TextAnnotation, Group, Association).",
     "variants": []
   },
   {
@@ -4108,8 +4637,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data assignment schema",
+      "Value mapping definition",
+      "Assignment expression structure"
+    ],
+    "purpose": "XSD complex type for BPMN Assignment, defining the data assignment structure.",
     "variants": []
   },
   {
@@ -4176,8 +4709,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Audit metadata schema",
+      "Compliance tracking structure",
+      "Schema-level audit configuration"
+    ],
+    "purpose": "XSD complex type for auditing metadata in BPMN elements.",
     "variants": []
   },
   {
@@ -4201,8 +4738,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Root schema type",
+      "All-element foundation",
+      "Id and documentation schema"
+    ],
+    "purpose": "XSD complex type for the base BPMN element with id and documentation.",
     "variants": []
   },
   {
@@ -4226,8 +4767,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Mixed content schema",
+      "Text-containing element structure",
+      "Documentation element base type"
+    ],
+    "purpose": "XSD complex type for BPMN elements supporting mixed content.",
     "variants": []
   },
   {
@@ -4345,8 +4890,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Callable element schema",
+      "Reusable process type",
+      "Interface-linked element base"
+    ],
+    "purpose": "XSD complex type for callable elements like Process and GlobalTask.",
     "variants": []
   },
   {
@@ -4408,8 +4957,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Choreography call schema",
+      "Reusable choreography reference type",
+      "Choreography invocation structure"
+    ],
+    "purpose": "XSD complex type for CallChoreography referencing a choreography definition.",
     "variants": []
   },
   {
@@ -4434,8 +4987,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Conversation call schema",
+      "Reusable conversation reference type",
+      "Collaboration call structure"
+    ],
+    "purpose": "XSD complex type for CallConversation within a collaboration.",
     "variants": []
   },
   {
@@ -4452,8 +5009,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Cancel event schema",
+      "Transaction cancel type",
+      "Event definition schema"
+    ],
+    "purpose": "XSD complex type for the Cancel event definition used in transactions.",
     "variants": []
   },
   {
@@ -4483,8 +5044,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Catch event base type",
+      "Event reception schema",
+      "Boundary and intermediate catch structure"
+    ],
+    "purpose": "XSD complex type for catch events (start, intermediate catch, boundary).",
     "variants": []
   },
   {
@@ -4509,8 +5074,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Category element schema",
+      "Grouping type structure",
+      "Diagram organization schema"
+    ],
+    "purpose": "XSD complex type for BPMN Category elements used for element grouping.",
     "variants": []
   },
   {
@@ -4533,8 +5102,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Category value schema",
+      "Label type definition",
+      "Group value structure"
+    ],
+    "purpose": "XSD complex type for CategoryValue, a labeled value within a category.",
     "variants": []
   },
   {
@@ -4553,8 +5126,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Choreography diagram schema",
+      "Participant interaction type",
+      "Choreography container structure"
+    ],
+    "purpose": "XSD complex type for the BPMN Choreography element.",
     "variants": []
   },
   {
@@ -4586,8 +5163,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Choreography task base type",
+      "Multi-participant activity schema",
+      "Choreography activity structure"
+    ],
+    "purpose": "XSD complex type for choreography activities, base for choreography tasks.",
     "variants": []
   },
   {
@@ -4606,8 +5187,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Choreography task schema",
+      "Message exchange type",
+      "Two-participant interaction structure"
+    ],
+    "purpose": "XSD complex type for ChoreographyTask, a two-party message exchange.",
     "variants": []
   },
   {
@@ -4647,8 +5232,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Collaboration schema type",
+      "Multi-pool diagram structure",
+      "Message flow container type"
+    ],
+    "purpose": "XSD complex type for the BPMN Collaboration element containing pools and message flows.",
     "variants": []
   },
   {
@@ -4676,8 +5265,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Compensation event schema",
+      "Transaction rollback type",
+      "Compensation handler binding"
+    ],
+    "purpose": "XSD complex type for Compensate event definitions.",
     "variants": []
   },
   {
@@ -4697,8 +5290,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Complex MI behavior schema",
+      "Multi-instance behavior spec",
+      "Conditional completion behavior type"
+    ],
+    "purpose": "XSD complex type for complex behavior definitions in multi-instance activities.",
     "variants": []
   },
   {
@@ -4756,8 +5353,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Conditional event schema",
+      "Condition-triggered event type",
+      "Event definition condition structure"
+    ],
+    "purpose": "XSD complex type for Conditional event definitions.",
     "variants": []
   },
   {
@@ -4774,8 +5375,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Conversation schema type",
+      "Message exchange grouping type",
+      "Collaboration communication structure"
+    ],
+    "purpose": "XSD complex type for the Conversation element in a collaboration.",
     "variants": []
   },
   {
@@ -4814,12 +5419,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Conversation link schema",
+      "Conversation node association type",
+      "Collaboration diagram linking structure"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "XSD complex type for ConversationAssociation — links conversation nodes in a collaboration diagram.",
     "variants": []
   },
   {
@@ -4852,8 +5456,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Conversation link schema",
+      "Participant-to-conversation connection type",
+      "Collaboration link structure"
+    ],
+    "purpose": "XSD complex type for ConversationLink connecting conversation nodes to participants.",
     "variants": []
   },
   {
@@ -4880,8 +5488,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Conversation node base type",
+      "Communication unit schema",
+      "Collaboration diagram node type"
+    ],
+    "purpose": "XSD complex type for all conversation node types in a collaboration.",
     "variants": []
   },
   {
@@ -4906,8 +5518,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Correlation key schema",
+      "Message routing key type",
+      "Instance identification structure"
+    ],
+    "purpose": "XSD complex type for CorrelationKey grouping correlation properties.",
     "variants": []
   },
   {
@@ -4937,8 +5553,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Correlation property schema",
+      "Message correlation type",
+      "Business key structure"
+    ],
+    "purpose": "XSD complex type for CorrelationProperty defining a correlation attribute.",
     "variants": []
   },
   {
@@ -4963,8 +5583,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Correlation binding schema",
+      "Property-to-message type",
+      "Runtime correlation binding structure"
+    ],
+    "purpose": "XSD complex type for CorrelationPropertyBinding linking properties to messages.",
     "variants": []
   },
   {
@@ -4989,8 +5613,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Correlation expression schema",
+      "Data path expression type",
+      "Property retrieval structure"
+    ],
+    "purpose": "XSD complex type for correlation property extraction expressions.",
     "variants": []
   },
   {
@@ -5015,8 +5643,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Correlation subscription schema",
+      "Message subscription type",
+      "Instance-to-message binding structure"
+    ],
+    "purpose": "XSD complex type for CorrelationSubscription defining message subscription.",
     "variants": []
   },
   {
@@ -5049,12 +5681,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Data association base schema",
+      "Abstract data flow type",
+      "Foundation for input and output data association types"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "XSD abstract complex type for all data associations (input and output). Base for tDataInputAssociation and tDataOutputAssociation.",
     "variants": []
   },
   {
@@ -5090,8 +5721,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data input schema",
+      "I/O specification input type",
+      "Activity input structure"
+    ],
+    "purpose": "XSD complex type for DataInput, formal activity input element.",
     "variants": []
   },
   {
@@ -5119,12 +5754,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Data input binding schema",
+      "Input data flow type",
+      "Source-to-activity data mapping structure"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "XSD complex type for DataInputAssociation — specifies data flowing into an activity from a data source.",
     "variants": []
   },
   {
@@ -5210,12 +5844,11 @@
       "DataAssociation"
     ],
     "common_patterns": [
-      "Documents required as input",
-      "Data produced as output",
-      "Shared information between activities",
-      "Business objects manipulated in the process"
+      "DataObject reference schema",
+      "Diagram-level data object placement type",
+      "Typed data reference structure"
     ],
-    "purpose": "Represents information flowing through the process, such as documents or business data.",
+    "purpose": "XSD complex type for DataObjectReference — a placed reference to a DataObject definition within a process diagram.",
     "variants": []
   },
   {
@@ -5251,8 +5884,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data output schema",
+      "I/O specification output type",
+      "Activity output structure"
+    ],
+    "purpose": "XSD complex type for DataOutput, formal activity output element.",
     "variants": []
   },
   {
@@ -5280,12 +5917,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Data output binding schema",
+      "Output data flow type",
+      "Activity-to-target data mapping structure"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "XSD complex type for DataOutputAssociation — specifies data flowing out of an activity to a data target.",
     "variants": []
   },
   {
@@ -5308,8 +5944,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Data state schema",
+      "Data lifecycle type",
+      "State-based data structure"
+    ],
+    "purpose": "XSD complex type for DataState, defining lifecycle states of data objects.",
     "variants": []
   },
   {
@@ -5403,12 +6043,11 @@
       "DataAssociation"
     ],
     "common_patterns": [
-      "Database read/write operations",
-      "Shared data repository",
-      "Persistent storage",
-      "Data lookup sources"
+      "DataStore reference schema",
+      "Diagram-level data store placement type",
+      "Persistent storage reference structure"
     ],
-    "purpose": "Represents a persistent data store (database, file system, etc.) accessed by the process.",
+    "purpose": "XSD complex type for DataStoreReference — a placed reference to a DataStore definition within a process diagram.",
     "variants": []
   },
   {
@@ -5435,8 +6074,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Documentation schema",
+      "Human-readable text type",
+      "Element description structure"
+    ],
+    "purpose": "XSD complex type for Documentation elements providing human-readable text.",
     "variants": []
   },
   {
@@ -5492,8 +6135,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Endpoint schema",
+      "Service address type",
+      "Partner endpoint structure"
+    ],
+    "purpose": "XSD complex type for EndPoint service endpoint definitions.",
     "variants": []
   },
   {
@@ -5526,8 +6173,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Error definition schema",
+      "Exception type structure",
+      "Error event binding type"
+    ],
+    "purpose": "XSD complex type for BPMN Error definitions.",
     "variants": []
   },
   {
@@ -5550,8 +6201,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Error event schema",
+      "Exception event type",
+      "Boundary error event structure"
+    ],
+    "purpose": "XSD complex type for Error event definitions.",
     "variants": []
   },
   {
@@ -5584,8 +6239,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Escalation schema",
+      "Escalation type structure",
+      "Escalation event binding type"
+    ],
+    "purpose": "XSD complex type for Escalation definitions.",
     "variants": []
   },
   {
@@ -5608,8 +6267,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Escalation event schema",
+      "Non-interrupting escalation type",
+      "Escalation boundary event structure"
+    ],
+    "purpose": "XSD complex type for Escalation event definitions.",
     "variants": []
   },
   {
@@ -5635,13 +6298,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "None Start Event - process starts immediately",
-      "Message Start Event - triggered by incoming message",
-      "Timer Start Event - triggered at specific time or interval",
-      "Signal Start Event - triggered by signal broadcast",
-      "Conditional Start Event - triggered when condition is met"
+      "Schema foundation for all event types",
+      "Base XSD type for start, end, and intermediate events",
+      "Shared event structure in BPMN schema"
     ],
-    "purpose": "Indicates where a process begins. Triggers the start of a process instance.",
+    "purpose": "XSD abstract complex type for all BPMN events. Base type for tCatchEvent and tThrowEvent. Not used directly in process models.",
     "variants": [
       "None",
       "Message",
@@ -5719,8 +6380,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Event definition base schema",
+      "Event type foundation",
+      "All event definition types"
+    ],
+    "purpose": "XSD abstract complex type for all event definitions.",
     "variants": []
   },
   {
@@ -5778,8 +6443,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Expression schema",
+      "Condition expression type",
+      "Evaluable expression structure"
+    ],
+    "purpose": "XSD complex type for BPMN expressions used in conditions and assignments.",
     "variants": []
   },
   {
@@ -5808,8 +6477,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Extension schema",
+      "Vendor extension type",
+      "Custom element declaration structure"
+    ],
+    "purpose": "XSD complex type for BPMN Extension declarations.",
     "variants": []
   },
   {
@@ -5824,8 +6497,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Extension container schema",
+      "Vendor metadata type",
+      "Custom data container structure"
+    ],
+    "purpose": "XSD complex type for ExtensionElements containers holding vendor-specific data.",
     "variants": []
   },
   {
@@ -5852,8 +6529,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Flow element base schema",
+      "Process node base type",
+      "Flow element foundation"
+    ],
+    "purpose": "XSD abstract complex type for all flow elements in a process.",
     "variants": []
   },
   {
@@ -5873,8 +6554,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Flow node base schema",
+      "Executable node base type",
+      "Task/gateway/event foundation"
+    ],
+    "purpose": "XSD abstract complex type for all flow nodes (tasks, gateways, events).",
     "variants": []
   },
   {
@@ -5902,8 +6587,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Typed expression schema",
+      "XPath/JavaScript expression type",
+      "Formal condition expression structure"
+    ],
+    "purpose": "XSD complex type for FormalExpression with a language and body.",
     "variants": []
   },
   {
@@ -5927,8 +6616,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Gateway base schema",
+      "Decision point base type",
+      "Gateway element foundation"
+    ],
+    "purpose": "XSD abstract complex type for all gateway types (XOR, AND, OR, event-based).",
     "variants": []
   },
   {
@@ -5989,8 +6682,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Global choreography task schema",
+      "Reusable interaction type",
+      "Cross-choreography task structure"
+    ],
+    "purpose": "XSD complex type for GlobalChoreographyTask reusable across choreographies.",
     "variants": []
   },
   {
@@ -6007,8 +6704,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Global conversation schema",
+      "Reusable conversation type",
+      "Cross-collaboration message structure"
+    ],
+    "purpose": "XSD complex type for GlobalConversation reusable across collaborations.",
     "variants": []
   },
   {
@@ -6096,8 +6797,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Global task schema",
+      "Reusable task type",
+      "Cross-process task definition"
+    ],
+    "purpose": "XSD complex type for GlobalTask reusable across processes via CallActivity.",
     "variants": []
   },
   {
@@ -6190,8 +6895,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Human performer schema",
+      "Person/role assignment type",
+      "Human task resource structure"
+    ],
+    "purpose": "XSD complex type for HumanPerformer, specifying a human resource.",
     "variants": []
   },
   {
@@ -6208,8 +6917,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Implicit throw event schema",
+      "Non-explicit end event type",
+      "Embedded subprocess completion structure"
+    ],
+    "purpose": "XSD complex type for ImplicitThrowEvent at the end of a process flow.",
     "variants": []
   },
   {
@@ -6275,8 +6988,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Input set schema",
+      "Data input grouping type",
+      "Activity input requirement structure"
+    ],
+    "purpose": "XSD complex type for InputSet grouping data inputs for an activity.",
     "variants": []
   },
   {
@@ -6306,8 +7023,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Interface schema",
+      "Service contract type",
+      "Operation grouping structure"
+    ],
+    "purpose": "XSD complex type for Interface defining service operations.",
     "variants": []
   },
   {
@@ -6416,8 +7137,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "I/O binding schema",
+      "Service data mapping type",
+      "Operation binding structure"
+    ],
+    "purpose": "XSD complex type for IOBinding linking operation messages to data elements.",
     "variants": []
   },
   {
@@ -6439,8 +7164,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "I/O specification schema",
+      "Full data specification type",
+      "Activity I/O structure"
+    ],
+    "purpose": "XSD complex type for IOSpecification defining all activity I/O.",
     "variants": []
   },
   {
@@ -6475,8 +7204,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Item definition schema",
+      "Data type specification",
+      "Typed element structure"
+    ],
+    "purpose": "XSD complex type for ItemDefinition specifying data types in BPMN.",
     "variants": []
   },
   {
@@ -6508,8 +7241,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Lane schema",
+      "Swimlane structure type",
+      "Responsibility partition schema"
+    ],
+    "purpose": "XSD complex type for Lane swimlane element.",
     "variants": []
   },
   {
@@ -6534,8 +7271,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Lane set schema",
+      "Swimlane container type",
+      "Pool organization structure"
+    ],
+    "purpose": "XSD complex type for LaneSet containing multiple lanes.",
     "variants": []
   },
   {
@@ -6561,8 +7302,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Link event schema",
+      "Off-page connector type",
+      "Flow jump structure"
+    ],
+    "purpose": "XSD complex type for Link event definitions.",
     "variants": []
   },
   {
@@ -6579,8 +7324,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Loop base schema",
+      "Activity repetition type",
+      "Loop configuration foundation"
+    ],
+    "purpose": "XSD abstract complex type for loop characteristics on activities.",
     "variants": []
   },
   {
@@ -6638,8 +7387,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Message definition schema",
+      "Inter-participant message type",
+      "Message payload structure"
+    ],
+    "purpose": "XSD complex type for Message definitions used in message events and tasks.",
     "variants": []
   },
   {
@@ -6664,8 +7417,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Message event schema",
+      "Message-triggered event type",
+      "Message event binding structure"
+    ],
+    "purpose": "XSD complex type for Message event definitions.",
     "variants": []
   },
   {
@@ -6768,12 +7525,11 @@
       "Pool"
     ],
     "common_patterns": [
-      "Request-response patterns",
-      "Notifications between organizations",
-      "Cross-pool communication",
-      "Message exchange between participants"
+      "Message flow to conversation binding schema",
+      "Conversation-level message flow association type",
+      "Collaboration message context structure"
     ],
-    "purpose": "Shows communication between different participants (pools) in a collaboration.",
+    "purpose": "XSD complex type for MessageFlowAssociation — links a message flow to a conversation in a collaboration diagram.",
     "variants": []
   },
   {
@@ -6790,8 +7546,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Monitoring schema",
+      "KPI tracking type",
+      "Runtime observability structure"
+    ],
+    "purpose": "XSD complex type for Monitoring metadata in BPMN elements.",
     "variants": []
   },
   {
@@ -6839,8 +7599,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Multi-instance schema",
+      "Collection-based iteration type",
+      "Parallel/sequential MI structure"
+    ],
+    "purpose": "XSD complex type for MultiInstanceLoopCharacteristics on activities.",
     "variants": []
   },
   {
@@ -6872,8 +7636,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Operation schema",
+      "Service operation type",
+      "Request-response operation structure"
+    ],
+    "purpose": "XSD complex type for Operation within a service interface.",
     "variants": []
   },
   {
@@ -6901,8 +7669,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Output set schema",
+      "Data output grouping type",
+      "Activity output structure"
+    ],
+    "purpose": "XSD complex type for OutputSet grouping data outputs of an activity.",
     "variants": []
   },
   {
@@ -7011,12 +7783,11 @@
       "Artifact"
     ],
     "common_patterns": [
-      "Linking text annotations to elements",
-      "Connecting data objects to activities",
-      "Documentation and clarification",
-      "Non-executable associations"
+      "Participant-to-conversation binding schema",
+      "Collaboration participant association type",
+      "Conversation participation structure"
     ],
-    "purpose": "Links artifacts (text annotations, data objects) to flow objects for documentation.",
+    "purpose": "XSD complex type for ParticipantAssociation — associates a participant with a conversation node.",
     "variants": []
   },
   {
@@ -7055,12 +7826,11 @@
       "MessageFlow"
     ],
     "common_patterns": [
-      "External systems",
-      "Partner organizations",
-      "Different business units",
-      "Service providers and consumers"
+      "Participant multiplicity schema",
+      "Multi-instance pool configuration type",
+      "Participant cardinality structure"
     ],
-    "purpose": "Represents an entity (person, system, organization) that participates in a collaboration.",
+    "purpose": "XSD complex type for ParticipantMultiplicity — defines the cardinality (min/max instances) of a participant in a collaboration.",
     "variants": []
   },
   {
@@ -7085,8 +7855,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Partner entity schema",
+      "External party type",
+      "Endpoint-linked partner structure"
+    ],
+    "purpose": "XSD complex type for PartnerEntity external partner definitions.",
     "variants": []
   },
   {
@@ -7111,8 +7885,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Partner role schema",
+      "Interface role type",
+      "Collaboration participant role structure"
+    ],
+    "purpose": "XSD complex type for PartnerRole defining a role in a collaboration.",
     "variants": []
   },
   {
@@ -7129,8 +7907,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Performer schema",
+      "Resource assignment type",
+      "Task responsibility structure"
+    ],
+    "purpose": "XSD complex type for Performer resource assignment on activities.",
     "variants": []
   },
   {
@@ -7147,8 +7929,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Potential owner schema",
+      "Task candidate type",
+      "Human task claim structure"
+    ],
+    "purpose": "XSD complex type for PotentialOwner human task candidate.",
     "variants": []
   },
   {
@@ -7198,8 +7984,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Process schema type",
+      "Executable process structure",
+      "Process element validation"
+    ],
+    "purpose": "XSD complex type for the BPMN Process element, defining the structure of a process definition.",
     "variants": []
   },
   {
@@ -7229,8 +8019,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Property schema",
+      "Local variable type",
+      "Process variable structure"
+    ],
+    "purpose": "XSD complex type for Property local variable definitions in processes.",
     "variants": []
   },
   {
@@ -7316,8 +8110,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Relationship schema",
+      "Custom link type",
+      "Tool-specific association structure"
+    ],
+    "purpose": "XSD complex type for non-standard Relationship between BPMN elements.",
     "variants": []
   },
   {
@@ -7334,8 +8132,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Rendering schema",
+      "Visual metadata type",
+      "Display hint structure"
+    ],
+    "purpose": "XSD complex type for Rendering visual hints in BPMN elements.",
     "variants": []
   },
   {
@@ -7360,8 +8162,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource schema",
+      "Named resource type",
+      "Resource pool definition structure"
+    ],
+    "purpose": "XSD complex type for Resource named entity definitions.",
     "variants": []
   },
   {
@@ -7380,8 +8186,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource expression schema",
+      "Dynamic assignment type",
+      "Runtime resource resolution structure"
+    ],
+    "purpose": "XSD complex type for ResourceAssignmentExpression dynamic resource evaluation.",
     "variants": []
   },
   {
@@ -7414,8 +8224,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource parameter schema",
+      "Dynamic resource parameter type",
+      "Callable element resource binding structure"
+    ],
+    "purpose": "XSD complex type for ResourceParameter in callable elements.",
     "variants": []
   },
   {
@@ -7440,8 +8254,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Parameter binding schema",
+      "Resource value binding type",
+      "Dynamic resource configuration structure"
+    ],
+    "purpose": "XSD complex type for ResourceParameterBinding linking parameters to values.",
     "variants": []
   },
   {
@@ -7468,8 +8286,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Resource role schema",
+      "Role assignment type",
+      "Task performer role structure"
+    ],
+    "purpose": "XSD complex type for ResourceRole defining task resource roles.",
     "variants": []
   },
   {
@@ -7486,8 +8308,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Root element schema",
+      "Top-level definition base type",
+      "Global element foundation"
+    ],
+    "purpose": "XSD abstract complex type for BPMN root-level elements.",
     "variants": []
   },
   {
@@ -7541,8 +8367,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Script content schema",
+      "Executable script type",
+      "Script task body structure"
+    ],
+    "purpose": "XSD complex type for Script content in script tasks.",
     "variants": []
   },
   {
@@ -7717,8 +8547,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Signal schema",
+      "Broadcast event type",
+      "Cross-process signal structure"
+    ],
+    "purpose": "XSD complex type for Signal broadcast event definitions.",
     "variants": []
   },
   {
@@ -7741,8 +8575,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Signal event schema",
+      "Broadcast event type",
+      "Signal catch/throw structure"
+    ],
+    "purpose": "XSD complex type for Signal event definitions.",
     "variants": []
   },
   {
@@ -7773,8 +8611,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Standard loop schema",
+      "While-loop type",
+      "Loop condition structure"
+    ],
+    "purpose": "XSD complex type for StandardLoopCharacteristics on activities.",
     "variants": []
   },
   {
@@ -7842,8 +8684,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Sub-choreography schema",
+      "Embedded interaction type",
+      "Nested choreography structure"
+    ],
+    "purpose": "XSD complex type for SubChoreography embedded within a choreography.",
     "variants": []
   },
   {
@@ -7862,8 +8708,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Sub-conversation schema",
+      "Nested message exchange type",
+      "Embedded collaboration structure"
+    ],
+    "purpose": "XSD complex type for SubConversation embedded within a collaboration.",
     "variants": []
   },
   {
@@ -7939,12 +8789,11 @@
       "SequenceFlow"
     ],
     "common_patterns": [
-      "Data transformation and manipulation",
-      "Simple calculations",
-      "Variable assignments",
-      "Inline business logic"
+      "Schema type for generic tasks",
+      "Atomic work unit definition",
+      "Base XSD type for UserTask, ServiceTask, ScriptTask, etc."
     ],
-    "purpose": "A task that executes a script in a specified scripting language.",
+    "purpose": "XSD complex type for the generic BPMN Task element — an atomic unit of work performed within a process. Base schema type for all specific task subtypes.",
     "variants": []
   },
   {
@@ -7961,8 +8810,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Terminate event schema",
+      "Immediate termination type",
+      "Process abort structure"
+    ],
+    "purpose": "XSD complex type for Terminate event definitions.",
     "variants": []
   },
   {
@@ -8015,8 +8868,12 @@
     "child_elements": [],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Annotation text schema",
+      "Note content type",
+      "Documentation text structure"
+    ],
+    "purpose": "XSD complex type for Text content within TextAnnotation elements.",
     "variants": []
   },
   {
@@ -8039,8 +8896,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Throw event base type",
+      "Event emission schema",
+      "Intermediate throw and end event foundation"
+    ],
+    "purpose": "XSD complex type for throw events (intermediate throw, end events).",
     "variants": []
   },
   {
@@ -8061,8 +8922,12 @@
     ],
     "can_connect_from": [],
     "can_connect_to": [],
-    "common_patterns": [],
-    "purpose": "",
+    "common_patterns": [
+      "Timer event schema",
+      "Scheduled event type",
+      "Timer configuration structure"
+    ],
+    "purpose": "XSD complex type for Timer event definitions.",
     "variants": []
   },
   {

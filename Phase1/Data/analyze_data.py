@@ -1,7 +1,10 @@
 import json
+from pathlib import Path
+
+_HERE = Path(__file__).parent
 
 # Load and analyze the generated training data
-with open('bpmn_training_data/bpmn_elements_structured.json', 'r', encoding='utf-8') as f:
+with open(_HERE / 'bpmn_training_data' / 'bpmn_elements_structured.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Find elements with full enrichment
@@ -25,7 +28,7 @@ for cat, count in sorted(categories.items(), key=lambda x: x[1], reverse=True):
     print(f"  {cat}: {count}")
 
 print("\n🎯 Sample Q&A Pairs:")
-with open('bpmn_training_data/bpmn_qa_pairs.jsonl', 'r', encoding='utf-8') as f:
+with open(_HERE / 'bpmn_training_data' / 'bpmn_qa_pairs.jsonl', 'r', encoding='utf-8') as f:
     qa_lines = f.readlines()[:5]
     for i, line in enumerate(qa_lines, 1):
         qa = json.loads(line)

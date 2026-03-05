@@ -87,3 +87,4 @@ results/
 # Cache directories
 .cache/
 cache/
+bpmn_env/

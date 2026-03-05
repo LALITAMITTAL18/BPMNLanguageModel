@@ -715,45 +715,116 @@ class BPMNDatasetGenerator:
         return qa_pairs
     
     def generate_comparison_pairs(self) -> List[Dict[str, Any]]:
-        """Generate comparison questions between elements"""
+        """Generate comparison questions between similar elements"""
         comparison_pairs = []
-        
-        # Gateway comparisons
-        gateways = ['ExclusiveGateway', 'ParallelGateway', 'InclusiveGateway', 'EventBasedGateway']
-        for i, gw1 in enumerate(gateways):
-            for gw2 in gateways[i+1:]:
-                if gw1 in self.elements and gw2 in self.elements:
-                    comparison_pairs.append({
-                        'instruction': f"What is the difference between {gw1} and {gw2}?",
-                        'input': '',
-                        'output': f"{gw1}: {self.elements[gw1]['purpose']} {gw2}: {self.elements[gw2]['purpose']}"
-                    })
-        
-        # Event comparisons
-        events = ['StartEvent', 'EndEvent', 'IntermediateEvent']
-        for i, e1 in enumerate(events):
-            for e2 in events[i+1:]:
-                if e1 in self.elements and e2 in self.elements:
-                    comparison_pairs.append({
-                        'instruction': f"What is the difference between {e1} and {e2}?",
-                        'input': '',
-                        'output': f"{e1}: {self.elements[e1]['purpose']} {e2}: {self.elements[e2]['purpose']}"
-                    })
-        
+
+        elements = [(name, data) for name, data in self.elements.items()]
+        elements.sort(key=lambda item: item[0].lower())
+
+        # For small offline sets, compare all pairs to avoid sparse output
+        if len(elements) <= 50:
+            for i, (name1, elem1) in enumerate(elements):
+                for name2, elem2 in elements[i + 1:]:
+                    comparison = self._compare_elements(name1, elem1, name2, elem2)
+                    if comparison:
+                        comparison_pairs.append(comparison)
+            return comparison_pairs
+
+        # For larger sets, compare within categories to keep size reasonable
+        by_category = {}
+        for elem_type, elem_data in self.elements.items():
+            category = elem_data.get('category', 'Other')
+            by_category.setdefault(category, []).append((elem_type, elem_data))
+
+        for _, elements_in_category in by_category.items():
+            if len(elements_in_category) < 2:
+                continue
+
+            elements_in_category.sort(key=lambda item: item[0].lower())
+
+            for i, (name1, elem1) in enumerate(elements_in_category):
+                for name2, elem2 in elements_in_category[i + 1:i + 3]:
+                    comparison = self._compare_elements(name1, elem1, name2, elem2)
+                    if comparison:
+                        comparison_pairs.append(comparison)
+
         return comparison_pairs
+
+    def _compare_elements(
+        self,
+        name1: str,
+        elem1: Dict[str, Any],
+        name2: str,
+        elem2: Dict[str, Any]
+    ) -> Dict[str, Any] | None:
+        """Compare two BPMN elements and return a comparison entry"""
+        similarities = []
+        differences = []
+
+        # Category and subcategory
+        category1 = elem1.get('category')
+        category2 = elem2.get('category')
+        if category1 and category2:
+            if category1 == category2:
+                similarities.append(f"Both are {category1} elements")
+            else:
+                differences.append(f"Category differs: {name1} is {category1}; {name2} is {category2}")
+        if elem1.get('subcategory') and elem1.get('subcategory') == elem2.get('subcategory'):
+            similarities.append(f"Both are {elem1['subcategory']}s")
+
+        # Purpose comparison
+        purpose1 = elem1.get('purpose', '')
+        purpose2 = elem2.get('purpose', '')
+        if purpose1 and purpose2 and purpose1 != purpose2:
+            differences.append(f"Purpose differs: {name1} {purpose1}; {name2} {purpose2}")
+
+        # Connection capabilities
+        can_to_1 = set(elem1.get('can_connect_to', []))
+        can_to_2 = set(elem2.get('can_connect_to', []))
+        if can_to_1 and can_to_1 == can_to_2:
+            similarities.append(f"Both can connect to: {', '.join(sorted(can_to_1))}")
+        elif can_to_1 != can_to_2:
+            differences.append("Connection targets differ")
+
+        can_from_1 = set(elem1.get('can_connect_from', []))
+        can_from_2 = set(elem2.get('can_connect_from', []))
+        if can_from_1 and can_from_1 == can_from_2:
+            similarities.append(f"Both can connect from: {', '.join(sorted(can_from_1))}")
+        elif can_from_1 != can_from_2:
+            differences.append("Connection sources differ")
+
+        # Constraints presence
+        has_constraints_1 = bool(elem1.get('constraints'))
+        has_constraints_2 = bool(elem2.get('constraints'))
+        if has_constraints_1 != has_constraints_2:
+            differences.append("Constraints coverage differs")
+
+        if not similarities and not differences:
+            return None
+
+        return {
+            'instruction': f"What is the difference between {name1} and {name2} in BPMN?",
+            'input': '',
+            'output': (
+                f"Similarities: {' '.join(similarities) if similarities else 'None'}. "
+                f"Differences: {' '.join(differences) if differences else 'None'}"
+            ),
+            'element1': name1,
+            'element2': name2
+        }
     
     def save_to_jsonl(self, data: List[Dict[str, Any]], filename: str):
         """Save data to JSONL format"""
         with open(filename, 'w', encoding='utf-8') as f:
             for item in data:
                 f.write(json.dumps(item, ensure_ascii=False) + '\n')
-        print(f"✓ Saved {len(data)} items to {filename}")
+        print(f"Saved {len(data)} items to {filename}")
     
     def save_to_json(self, data: List[Dict[str, Any]], filename: str):
         """Save data to JSON format"""
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"✓ Saved {len(data)} items to {filename}")
+        print(f"Saved {len(data)} items to {filename}")
 
 
 def main():
