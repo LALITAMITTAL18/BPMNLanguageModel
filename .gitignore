@@ -89,3 +89,4 @@ results/
 cache/
 bpmn_env/
 tinyllama-lora/
+tinyllama-instruction/
