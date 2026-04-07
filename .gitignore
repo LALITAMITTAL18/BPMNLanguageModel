@@ -91,3 +91,8 @@ bpmn_env/
 tinyllama-lora/
 tinyllama-instruction/
 tinyllama-merged-temp/
+.claude/
+tinyllama-merged-for-dpo/
+tinyllama-dpo/
+tinyllama-dpo-step57/
+tinyllama-merged-for-test/
