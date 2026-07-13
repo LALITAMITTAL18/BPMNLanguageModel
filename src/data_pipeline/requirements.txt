@@ -2,8 +2,9 @@
 # Core checks run on the standard library alone; these improve/extend them.
 
 ftfy>=6.0            # D1: robust mojibake repair (fix_encoding.py)
+lxml>=5.0            # D3/D5: BPMN XML mutation & building (inject_defects.py, ir_to_bpmn.py)
+SpiffWorkflow>=3.0   # D5: BPMN 2.0 XSD schema validation (bpmn_validate.py, validate_rows.py C2 gate)
+pyarrow>=15.0        # D5: read the PET parquet for the NL→BPMN bootstrap (pet_to_ir.py)
 
-# Optional / future — deep BPMN 2.0 validation for C2 generation rows (D5, TDD §4).
-# Uncomment when C2 diagram rows exist:
-# SpiffWorkflow>=3.0   # BPMN 2.0 schema validation (Python)
-# bpmnlint is installed via npm, not pip: `npm i -g bpmnlint`
+# Future — configurable rule validation for C2 rows (TDD §4). Installed via npm, not pip:
+#   npm i -g bpmnlint

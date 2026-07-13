@@ -1,0 +1,16 @@
+{
+  "ruleset": "generic-governance-v1",
+  "description": "Generic, industry-agnostic process-governance checks (C7). Organisations replace or extend these rules with their own policy/regulatory requirements — the checker is rule-driven, not hard-coded.",
+  "rules": [
+    {"id": "has_start_event", "desc": "The process has an explicit start event", "type": "require_type", "param": "startEvent", "severity": "high"},
+    {"id": "has_end_event", "desc": "The process has an explicit end event", "type": "require_type", "param": "endEvent", "severity": "high"},
+    {"id": "approval_control", "desc": "An approval/authorization control step is present", "type": "name_match", "param": "approv|authoriz|sign[- ]?off|review", "severity": "medium"},
+    {"id": "auditable_record", "desc": "An auditable record/log/archive step is present", "type": "name_match", "param": "record|log\\b|archive|audit|register", "severity": "medium"},
+    {"id": "stakeholder_notification", "desc": "Stakeholders are notified of the outcome", "type": "name_match", "param": "notif|inform|acknowledg|send|alert", "severity": "low"},
+    {"id": "exception_handling", "desc": "Alternative/decision paths are modelled (process is not purely linear)", "type": "has_gateway", "severity": "low"},
+    {"id": "single_start_event", "desc": "The process has a single start event (7PMG G3)", "type": "cardinality_max", "param": "startEvent", "max": 1, "severity": "medium"},
+    {"id": "single_end_event", "desc": "The process has a single end event (7PMG G3)", "type": "cardinality_max", "param": "endEvent", "max": 1, "severity": "low"},
+    {"id": "bounded_size", "desc": "The model stays small enough to understand (7PMG G1/G7: <= 50 elements)", "type": "size_max", "max": 50, "severity": "low"},
+    {"id": "avoid_or_gateway", "desc": "Avoid OR (inclusive) routing where possible (7PMG G5)", "type": "forbid_type", "param": "inclusiveGateway", "severity": "low"}
+  ]
+}

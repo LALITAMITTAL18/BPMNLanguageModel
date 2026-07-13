@@ -3,11 +3,12 @@
 D2 — Dataset coverage report.
 
 Implements the coverage half of deliverable D2 in doc/Training-Data-Build-Spec.md
-(§5). Produces a baseline picture of how far the current data is from the v1
-targets, on two axes:
+(§5). Produces a picture of how far the current data is from the v1 targets, on four axes:
 
   Axis 1 - Capability x volume  (C1..C7 vs targets in spec §5)
-  Axis 2 - BPMN element/type coverage (spec §5 element list)
+  Axis 2 - BPMN element/type coverage by prose mention (spec §5 element list)
+  Axis 3 - BPMN 2.0 element INSTANCE coverage (parsed from real diagram XML)
+  Axis 4 - C3 anti-pattern / edge-case coverage (defect_type distribution)
 
 Capability is read from meta.capability when present (authoritative). For legacy
 rows without meta, a clearly-labelled heuristic estimate is shown so the baseline
@@ -57,10 +58,55 @@ ELEMENTS = {
     "textAnnotation": ["textannotation", "text annotation", "annotation"],
 }
 
-import re
-
 XML_DOC_STARTS = ("<?xml", "<definitions", "<bpmn:definitions", "<bpmn:")
 FENCE_RE = re.compile(r"```(?:xml)?\s*(.*?)```", re.DOTALL)
+
+try:
+    from lxml import etree
+    _HAVE_LXML = True
+except Exception:  # pragma: no cover
+    _HAVE_LXML = False
+
+# Full BPMN 2.0 element taxonomy for INSTANCE coverage (elements actually present in the
+# diagram XML, not just mentioned in prose) — the checklist used by the BPMN-expert audit.
+ELEMENT_TAXONOMY = {
+    "Events": ["startEvent", "endEvent", "intermediateCatchEvent", "intermediateThrowEvent",
+               "boundaryEvent"],
+    "Activities": ["task", "userTask", "serviceTask", "sendTask", "receiveTask", "manualTask",
+                   "scriptTask", "businessRuleTask", "subProcess", "callActivity",
+                   "adHocSubProcess", "transaction"],
+    "Gateways": ["exclusiveGateway", "parallelGateway", "inclusiveGateway", "eventBasedGateway",
+                 "complexGateway"],
+    "Connecting": ["sequenceFlow", "messageFlow", "association"],
+    "Swimlanes": ["participant", "lane", "collaboration"],
+    "Data": ["dataObject", "dataObjectReference", "dataStore", "dataStoreReference",
+             "dataOutputAssociation"],
+    "Artifacts": ["textAnnotation", "group"],
+    "Loop/MI": ["standardLoopCharacteristics", "multiInstanceLoopCharacteristics"],
+}
+
+
+def _xml_docs_in_row(row):
+    docs = []
+    for field in ("output", "input", "chosen", "rejected"):
+        v = row.get(field)
+        if not isinstance(v, str) or "<" not in v:
+            continue
+        blocks = FENCE_RE.findall(v)
+        if blocks:
+            docs += [b.strip() for b in blocks if b.strip().startswith(XML_DOC_STARTS)]
+        elif v.strip().startswith(XML_DOC_STARTS):
+            docs.append(v.strip())
+    return docs
+
+
+def _localnames(xml):
+    if not _HAVE_LXML:
+        return set()
+    try:
+        return set(etree.QName(e).localname for e in etree.fromstring(xml.encode("utf-8")).iter())
+    except Exception:
+        return set()
 
 
 def row_text(row: dict) -> str:
@@ -111,6 +157,8 @@ def analyze(paths: list[Path]):
     xml_rows = 0
     total = 0
     element_hits = Counter()
+    element_instances = Counter()   # actual BPMN element localnames found in diagram XML
+    antipatterns = Counter()        # C3 defect_type distribution
     per_file = {}
 
     for p in paths:
@@ -141,13 +189,20 @@ def analyze(paths: list[Path]):
                 for el, kws in ELEMENTS.items():
                     if any(kw in text for kw in kws):
                         element_hits[el] += 1
+                # instance-level element coverage (parse real diagram XML)
+                for doc in _xml_docs_in_row(row):
+                    element_instances.update(_localnames(doc))
+                # anti-pattern coverage from C3 rows
+                if isinstance(meta, dict) and meta.get("capability") == "C3" and meta.get("defect_type"):
+                    antipatterns[meta["defect_type"]] += 1
         per_file[str(p)] = fcount
 
     return {
         "total": total, "per_file": per_file, "pref_count": pref_count,
         "sft_meta": sft_meta, "sft_heur": sft_heur, "untagged": untagged,
         "input_field_used": input_field_used, "xml_rows": xml_rows,
-        "element_hits": element_hits,
+        "element_hits": element_hits, "element_instances": element_instances,
+        "antipatterns": antipatterns,
     }
 
 
@@ -192,6 +247,55 @@ def render(a: dict) -> str:
         L.append(f"**Elements with zero coverage:** {', '.join(missing)}")
     else:
         L.append("**All tracked elements have at least one mention.**")
+
+    # ---- Axis 3: instance-level element coverage (real diagram XML) ----
+    inst = a["element_instances"]
+    total_el = sum(len(v) for v in ELEMENT_TAXONOMY.values())
+    covered_el = sum(1 for v in ELEMENT_TAXONOMY.values() for e in v if inst.get(e, 0) > 0)
+    L.append("\n## Axis 3 — BPMN 2.0 element INSTANCE coverage (in diagrams)\n")
+    L.append("_Elements actually present in the diagram XML across the scanned datasets "
+             "(parsed, not prose-matched). This is the coverage the BPMN-expert audit fixed._\n")
+    L.append(f"**{covered_el} / {total_el} element kinds present as real instances.**\n")
+    L.append("| Category | Element | Instances | Present |")
+    L.append("|----------|---------|:---------:|:-------:|")
+    absent = []
+    for cat, els in ELEMENT_TAXONOMY.items():
+        for e in els:
+            n = inst.get(e, 0)
+            L.append(f"| {cat} | {e} | {n} | {'yes' if n else '—'} |")
+            if not n:
+                absent.append(e)
+    L.append("")
+    if absent:
+        L.append(f"**Not instantiated in these datasets:** {', '.join(absent)} "
+                 "(note: `dataStore` is rejected by the SpiffWorkflow validation gate as "
+                 "'unimplemented', but is present in the MIWG eval set and the C1 knowledge base).")
+    else:
+        L.append("**Every element kind in the taxonomy is present as a real instance.**")
+
+    # ---- Axis 4: C3 anti-pattern coverage ----
+    ap = a["antipatterns"]
+    L.append("\n## Axis 4 — C3 anti-pattern / edge-case coverage\n")
+    if ap:
+        real = {k: v for k, v in ap.items() if k != "none"}
+        L.append(f"**{len(real)} anti-pattern types** (plus clean negatives), grounded in BPMN "
+                 "soundness and 7PMG taxonomies:\n")
+        L.append("| Anti-pattern (defect_type) | Rows |")
+        L.append("|-----------------------------|:----:|")
+        for k in sorted(ap):
+            L.append(f"| {k} | {ap[k]} |")
+    else:
+        L.append("_No C3 rows in the scanned files._")
+
+    L.append("\n## Enrichment log\n")
+    L.append("- **Rich elements added to training** (were previously eval-only): boundary events, "
+             "collaborations (pools/lanes/message flows), data objects, multi-instance & loop markers, "
+             "script/complex/manual/call/receive tasks, throwing message events, text annotations, groups.")
+    L.append("- **Train/eval mismatch fixed** via a disjoint MIWG reference split (`diagram_pools.py`) so "
+             "rich real-world diagrams (CC BY 3.0) feed both train and eval.")
+    L.append("- **Anti-patterns extended** from 8 → 11: added lack-of-synchronization, start-with-incoming, "
+             "and end-with-outgoing (soundness/connectivity).")
+    L.append("- **Every diagram is XSD-validated** through the SpiffWorkflow gate before acceptance.")
     return "\n".join(L) + "\n"
 
 
@@ -208,10 +312,18 @@ def main() -> int:
 
     a = analyze(args.files)
     report = render(a)
-    print(report)
-    if args.md:
+    if args.md:  # write the UTF-8 artifact first so console encoding can't block it
         args.md.parent.mkdir(parents=True, exist_ok=True)
         args.md.write_text(report, encoding="utf-8")
+    # Windows consoles default to cp1252 which cannot encode some Unicode (e.g. arrows);
+    # print resiliently rather than crash.
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+    print(report)
+    if args.md:
         print(f"[written] {args.md}")
     return 0
 

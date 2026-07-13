@@ -174,6 +174,20 @@ The sponsor asked specifically for a dataset search across Hugging Face, Kaggle,
 |---------|--------------|
 | **camunda/bpmn-for-research** (>3,700 `.bpmn` files) | Terms of Use: *"academic and research purposes only"* and *"Commercial use of the content of this repository is not allowed."* **Must not be used** in this product. (Verified live 2026-07-10.) |
 
+### 6.5 Additional sources (from 2026-07 scaling research — verified)
+Later research (25/25 claims confirmed) surfaced further **license-clean** resources now integrated or available:
+| Source | What / size | License | Status |
+|--------|-------------|---------|--------|
+| **hdBPMN** (dwslab/hdBPMN) | 704 hand-drawn renderings of ~11 distinct processes, each with ground-truth `.bpmn` XML | **CC BY 4.0** ✅ | **In use** — deduped to 11 distinct structures as a real-world C3/C4/C6/C7 eval slice (using all 704 would cause diversity collapse) |
+| **Textual Process Descriptions** (Zenodo 7783492) | 24 NL descriptions × 8–11 models + expert scores | **CC BY 4.0** ✅ | Available for C2 (not yet integrated) |
+| **PMo Dataset** (Zenodo 15857589) | 55 model/text pairs, incl. diagram-less BPMN XML | **CC BY 4.0** ⚠️ | Contains a few `bpmn-for-research`-derived pairs — must filter before use |
+| **7PMG** (Mendling et al.) | 7 empirically-grounded modeling guidelines | guideline (citable) | **Encoded** into C7 rules (single start/end, size, avoid-OR) + C3 defect types |
+| **bpmnlint rule catalogue** | ~25 anti-pattern rules | **MIT** ✅ | Informs C3 defect injectors (implicit split, etc.) |
+| **GitHub BPMN Artifacts 2021** (Zenodo 5895006) | 337,506 mined `.bpmn` | CC BY 4.0 (compilation only) | ❌ **Excluded** — per-file upstream licenses unknown |
+| **Friedrich/Mendling 47-pair** benchmark | 47 text↔model pairs | **unverified** | ❌ Excluded until license confirmed |
+
+**Scaling method (validation-filtered synthesis):** per the research (Self-Instruct + verification-asymmetry + AttrPrompt diversity), training data is scaled by *generating* candidates and keeping only those that pass the deterministic IR→XML + XSD/bpmnlint auto-checker, varying domain × pattern × phrasing to avoid diversity collapse. See `src/data_pipeline/` (gen_processes, build_c2_dataset, build_preference_dataset, gen_c1_qa).
+
 ### 6.4 First-party data (recommended primary source)
 Given the licensing minefield above, the most reliable path is to **grow the POC's own datasets** (`data/bpmn_instruction_dataset.jsonl`, `data/bpmn_dpo_dataset.jsonl`) plus a **synthetically generated, human-reviewed** corpus of NL↔BPMN pairs and flawed/fixed diagrams. This sidesteps third-party license risk entirely and lets us target our exact capabilities. See §8.
 

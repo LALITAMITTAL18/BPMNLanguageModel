@@ -48,6 +48,9 @@ wandb/
 # *.jsonl
 # *.json
 
+# Downloaded source corpora (raw material — not tracked; see doc/Training-Data-Build-Spec.md §9)
+data/raw/
+
 # IDE
 .vscode/
 .idea/
