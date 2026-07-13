@@ -1,0 +1,9 @@
+# Data-pipeline dependencies (src/data_pipeline).
+# Core checks run on the standard library alone; these improve/extend them.
+
+ftfy>=6.0            # D1: robust mojibake repair (fix_encoding.py)
+
+# Optional / future — deep BPMN 2.0 validation for C2 generation rows (D5, TDD §4).
+# Uncomment when C2 diagram rows exist:
+# SpiffWorkflow>=3.0   # BPMN 2.0 schema validation (Python)
+# bpmnlint is installed via npm, not pip: `npm i -g bpmnlint`
