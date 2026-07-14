@@ -99,3 +99,6 @@ tinyllama-merged-for-dpo/
 tinyllama-dpo/
 tinyllama-dpo-step57/
 tinyllama-merged-for-test/
+# Downloaded/trained model weights (large)
+models/
+*.safetensors

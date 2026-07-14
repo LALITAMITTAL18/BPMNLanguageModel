@@ -1,0 +1,38 @@
+{
+  "runner": "null",
+  "scoreboard": {
+    "C1": {
+      "n": 12,
+      "score": 0.0,
+      "metric": "proxy (token-F1 vs gold; LLM-judge is the real metric)"
+    },
+    "C2": {
+      "n": 6,
+      "score": 0.0,
+      "metric": "objective (XSD-valid rate)",
+      "xsd_valid_rate": 0.0
+    },
+    "C3": {
+      "n": 58,
+      "score": 0.103,
+      "metric": "objective (defect recall / FP rate)",
+      "defect_recall": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "C4": {
+      "n": 17,
+      "score": 0.0,
+      "metric": "proxy (token-F1 vs gold narrative)"
+    },
+    "C6": {
+      "n": 17,
+      "score": 0.0,
+      "metric": "proxy (token-F1 vs gold findings)"
+    },
+    "C7": {
+      "n": 17,
+      "score": 0.0,
+      "metric": "objective (failing-rule agreement)"
+    }
+  }
+}
