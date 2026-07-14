@@ -240,6 +240,10 @@ def compliance_check(m: Model, ruleset: dict):  # C7
             hits = m.by_type(rule["param"])
             passed = len(hits) == 0
             evidence = "none present" if passed else f"{len(hits)} {rule['param']}(s) present"
+        else:
+            # Unknown rule type: surface it rather than silently marking the rule failed.
+            passed = False
+            evidence = f"unsupported rule type '{rtype}' — checker cannot evaluate this rule"
         results.append({"id": rule["id"], "desc": rule["desc"], "severity": rule.get("severity", "low"),
                         "passed": passed, "evidence": evidence})
     n_pass = sum(1 for r in results if r["passed"])
