@@ -83,6 +83,15 @@ deleted files from git history first (`git checkout <rev> -- data/bpmn_*_dataset
 
 ---
 
+## Diagram-interchange (DI) handling
+- **Analysis tasks (C3/C4/C6/C7):** the BPMN XML in the `input` field has its `<bpmndi:BPMNDiagram>`
+  (shape coordinates / edge waypoints) **stripped** — DI is noise for semantic review/narration and
+  was ~half the tokens. The semantic model is untouched and the XML stays schema-valid (DI is
+  optional in BPMN 2.0). This roughly halves sequence length and cuts truncation from ~35% to ~1%.
+- **Generation task (C2):** the `output` BPMN XML **keeps full DI** so generated diagrams render.
+- **Inference consistency:** the assistant's orchestrator strips DI the same way before handing an
+  uploaded diagram to the model for analysis (see `src/data_pipeline/analyze_bpmn.py::strip_di`).
+
 ## What is needed for a training run
 - **Required:** `data/instruction/*.jsonl` (SFT) + `data/preference/*.jsonl` (DPO).
 - **Required for evaluation:** `data/eval/*.jsonl`.

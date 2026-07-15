@@ -27,7 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from analyze_bpmn import (parse, narrate, automation_opportunities, automation_to_text,  # noqa: E402
-                          compliance_check, compliance_to_text)
+                          compliance_check, compliance_to_text, strip_di)
 from diagram_pools import miwg_reference_split, hdbpmn_deduped  # noqa: E402
 
 C4_INSTR = ("Explain this BPMN 2.0 diagram in plain English, describing the flow from "
@@ -55,6 +55,7 @@ def make_rows(diagrams, ruleset, split, is_eval):
     c4, c6, c7 = [], [], []
     for i, (name, xml, source) in enumerate(diagrams, 1):
         try:
+            xml = strip_di(xml)   # analysis inputs don't need diagram coordinates (see analyze_bpmn.strip_di)
             m = parse(xml)
         except Exception:
             continue

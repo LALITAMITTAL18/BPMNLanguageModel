@@ -72,6 +72,24 @@ def _local(el) -> str:
     return etree.QName(el).localname
 
 
+def strip_di(xml):
+    """Remove the diagram-interchange (<bpmndi:BPMNDiagram>) section from a BPMN file.
+
+    DI holds only shape coordinates / edge waypoints — noise for semantic analysis (C3/C4/C6/C7)
+    and a large share of the tokens. Removing it leaves the semantic model (processes, elements,
+    flows, lanes, collaboration) intact, and the result is still schema-valid because DI is
+    OPTIONAL in the BPMN 2.0 XSD. Used to shrink analysis-task INPUTS; generation (C2) keeps full
+    DI so its output diagrams render. At inference the orchestrator strips DI the same way before
+    handing a diagram to the model, so train/inference stay consistent.
+    """
+    root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
+    for el in list(root):
+        if etree.QName(el).localname == "BPMNDiagram":
+            root.remove(el)
+    body = etree.tostring(root, encoding="unicode")
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + body
+
+
 def parse(xml) -> Model:
     root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
     m = Model()

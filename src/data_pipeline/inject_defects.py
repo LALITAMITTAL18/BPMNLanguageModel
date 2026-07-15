@@ -400,10 +400,13 @@ def build_rows(diagrams, split, is_eval, source_tag):
     rows = []
     counter = 0
     id_prefix = "c3eval" if is_eval else "c3"
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from analyze_bpmn import strip_di
     for name, xml in diagrams:
         try:
+            xml = strip_di(xml)   # C3 review works on the semantic model; drop DI coordinate noise
             orig_root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
-        except etree.XMLSyntaxError:
+        except (etree.XMLSyntaxError, ValueError):
             continue
         ns = model_ns(orig_root)
         src, attr = _provenance(name, source_tag)
