@@ -1,7 +1,8 @@
 # Fine-tuning dependencies (installed by kaggle_train_bpmn.ipynb).
 # prepare_data.py needs NONE of these — it is standard-library only.
 transformers>=4.51     # Qwen3 support landed in 4.51
-trl>=0.20              # SFTConfig.max_length (not max_seq_length), processing_class=, assistant_only_loss
+trl==0.21.0            # has max_length/processing_class; avoids the chunked-CE LM-head patch that
+                       # crashes on a device_map/4-bit (functools.partial) forward in newer TRL
 peft>=0.13             # LoRA / QLoRA adapters
 datasets>=2.20
 bitsandbytes>=0.44     # 4-bit quantization (QLoRA)
