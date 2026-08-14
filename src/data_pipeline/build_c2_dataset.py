@@ -27,6 +27,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ir_to_bpmn import build_bpmn, IRError          # noqa: E402
 from bpmn_validate import wellformed, schema_valid, spiff_available  # noqa: E402
+from analyze_bpmn import strip_di                    # noqa: E402
 
 
 def main() -> int:
@@ -72,6 +73,10 @@ def main() -> int:
             if ok_sc is False:
                 rejected.append((str(seed_file), lineno, f"schema invalid: {err_sc}"))
                 continue
+            # The model is trained to emit SEMANTIC BPMN (no <bpmndi> coordinates) — DI is added
+            # deterministically at inference (bpmn-auto-layout, TDD §4.5). Stripping DI keeps the
+            # target ~half the length (fits MAX_LEN) and DI-less BPMN is still XSD-valid.
+            xml = strip_di(xml)
             idx += 1
             meta = {
                 "capability": "C2",
